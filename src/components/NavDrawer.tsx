@@ -5,9 +5,17 @@ import { EXTRA_LINKS, NAV_SECTIONS } from '../data/menu';
 type Props = {
   open: boolean;
   onClose: () => void;
+  onSelectSection?: (sectionId: string) => void;
 };
 
-export function NavDrawer({ open, onClose }: Props) {
+const SECTION_IDS = new Set([
+  'estudio-del-mercado',
+  'estrategia-de-marketing',
+  'plan-de-accion',
+  'plan-financiero',
+]);
+
+export function NavDrawer({ open, onClose, onSelectSection }: Props) {
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
@@ -28,6 +36,10 @@ export function NavDrawer({ open, onClose }: Props) {
 
   const handleNavigate = (anchor: string) => {
     onClose();
+    if (SECTION_IDS.has(anchor) && onSelectSection) {
+      requestAnimationFrame(() => onSelectSection(anchor));
+      return;
+    }
     requestAnimationFrame(() => {
       const target = document.getElementById(anchor);
       if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });

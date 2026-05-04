@@ -1,28 +1,27 @@
-import { ReactNode, useState } from 'react';
-import { ChevronDown, HelpCircle } from 'lucide-react';
+import { ReactNode } from 'react';
 
-type Leaf = {
+export type SectionLeaf = {
   id: string;
   label: string;
   detail?: ReactNode;
   qaAnchor?: string;
 };
 
-type Branch = {
+export type SectionGroup = {
   id: string;
   label: string;
-  children: Leaf[];
+  children: SectionLeaf[];
 };
 
-type Section = {
+export type SectionContent = {
   id: string;
   number: string;
   title: string;
   intro: string;
-  groups: Branch[];
+  groups: SectionGroup[];
 };
 
-const SECTIONS: Section[] = [
+export const SECTION_CONTENT: SectionContent[] = [
   {
     id: 'estudio-del-mercado',
     number: '03',
@@ -400,7 +399,12 @@ const SECTIONS: Section[] = [
           {
             id: 'pf-explotacion-detail',
             label: 'ROI · ROAS',
-            detail: <p>Rentabilidad global del negocio y de cada euro invertido en publicidad.</p>,
+            detail: (
+              <p>
+                Rentabilidad global del negocio y de cada euro invertido en
+                publicidad.
+              </p>
+            ),
           },
         ],
       },
@@ -411,7 +415,12 @@ const SECTIONS: Section[] = [
           {
             id: 'pf-equilibrio-detail',
             label: 'Break-even',
-            detail: <p>Volumen de ventas a partir del cual el proyecto cubre todos sus costes.</p>,
+            detail: (
+              <p>
+                Volumen de ventas a partir del cual el proyecto cubre todos sus
+                costes.
+              </p>
+            ),
           },
         ],
       },
@@ -429,186 +438,3 @@ const SECTIONS: Section[] = [
     ],
   },
 ];
-
-function LeafItem({ leaf }: { leaf: Leaf }) {
-  const [open, setOpen] = useState(false);
-  const hasDetail = leaf.detail !== undefined;
-
-  return (
-    <div
-      className="rounded-2xl bg-white"
-      style={{ boxShadow: '0 0 0 0.5px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.05)' }}
-    >
-      <button
-        type="button"
-        onClick={() => hasDetail && setOpen((v) => !v)}
-        className={`w-full flex items-center justify-between gap-3 px-5 py-4 text-left ${
-          hasDetail ? 'cursor-pointer hover:bg-black/[0.02]' : 'cursor-default'
-        } rounded-2xl transition-colors`}
-        aria-expanded={open}
-      >
-        <span className="text-sm md:text-base" style={{ color: '#0D212C' }}>
-          {leaf.label}
-        </span>
-        {hasDetail && (
-          <ChevronDown
-            className={`w-4 h-4 flex-shrink-0 transition-transform ${open ? 'rotate-180' : ''}`}
-            style={{ color: '#0D212C' }}
-          />
-        )}
-      </button>
-
-      {hasDetail && open && (
-        <div
-          className="px-5 pb-5 text-sm md:text-base leading-relaxed"
-          style={{ color: 'rgba(5,26,36,0.85)' }}
-        >
-          {leaf.detail}
-          {leaf.qaAnchor && (
-            <a
-              href={leaf.qaAnchor}
-              className="inline-flex items-center gap-1.5 mt-3 text-xs hover:opacity-70 transition-opacity"
-              style={{ color: '#273C46' }}
-            >
-              <HelpCircle className="w-3.5 h-3.5" />
-              Ver pregunta frecuente
-            </a>
-          )}
-        </div>
-      )}
-    </div>
-  );
-}
-
-function GroupItem({ group }: { group: Branch }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="rounded-[24px] bg-[#F6F8F9] p-3 md:p-4">
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center justify-between gap-3 px-3 py-3 rounded-2xl hover:bg-white/60 transition-colors"
-        aria-expanded={open}
-      >
-        <span
-          className="font-medium text-base md:text-lg"
-          style={{ color: '#0D212C' }}
-        >
-          {group.label}
-        </span>
-        <ChevronDown
-          className={`w-5 h-5 flex-shrink-0 transition-transform ${open ? 'rotate-180' : ''}`}
-          style={{ color: '#0D212C' }}
-        />
-      </button>
-
-      {open && (
-        <div className="mt-3 flex flex-col gap-2">
-          {group.children.map((leaf) => (
-            <LeafItem key={leaf.id} leaf={leaf} />
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
-function SectionItem({ section }: { section: Section }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <article
-      id={section.id}
-      className="rounded-[40px] bg-white"
-      style={{ boxShadow: '0 0 0 0.5px rgba(0,0,0,0.05), 0 4px 30px rgba(0,0,0,0.06)' }}
-    >
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-start justify-between gap-6 px-6 md:px-10 py-6 md:py-8 text-left rounded-[40px] hover:bg-black/[0.02] transition-colors"
-        aria-expanded={open}
-      >
-        <div className="flex-1">
-          <div
-            className="font-mono text-xs md:text-sm mb-2"
-            style={{ color: '#273C46' }}
-          >
-            {section.number}.
-          </div>
-          <h3
-            className="font-serif font-semibold text-2xl md:text-3xl lg:text-4xl"
-            style={{ color: '#051A24' }}
-          >
-            {section.title}
-          </h3>
-          <p
-            className="text-sm md:text-base mt-2 max-w-2xl"
-            style={{ color: 'rgba(5,26,36,0.7)' }}
-          >
-            {section.intro}
-          </p>
-        </div>
-
-        <ChevronDown
-          className={`w-6 h-6 mt-2 flex-shrink-0 transition-transform ${open ? 'rotate-180' : ''}`}
-          style={{ color: '#0D212C' }}
-        />
-      </button>
-
-      {open && (
-        <div className="px-6 md:px-10 pb-8 md:pb-10 flex flex-col gap-4">
-          {section.groups.map((g) =>
-            g.children.length === 1 && g.id === g.children[0].id.replace(/-detail$/, '') ? (
-              <LeafItem
-                key={g.id}
-                leaf={{
-                  id: g.id,
-                  label: g.label,
-                  detail: g.children[0].detail,
-                  qaAnchor: g.children[0].qaAnchor,
-                }}
-              />
-            ) : (
-              <GroupItem key={g.id} group={g} />
-            ),
-          )}
-        </div>
-      )}
-    </article>
-  );
-}
-
-export function HierarchicalMenu() {
-  return (
-    <section
-      id="apartados"
-      className="max-w-[1100px] mx-auto px-6 py-16 md:py-20"
-    >
-      <header className="mb-10 md:mb-12">
-        <p className="font-mono text-xs md:text-sm mb-3" style={{ color: '#273C46' }}>
-          Menú de Inicio
-        </p>
-        <h2
-          className="text-[32px] md:text-[44px] lg:text-[56px] leading-[1.05] tracking-tight"
-          style={{ color: '#0D212C' }}
-        >
-          Los <span className="font-serif">apartados</span> del plan
-        </h2>
-        <p
-          className="text-sm md:text-base mt-3 max-w-xl"
-          style={{ color: 'rgba(5,26,36,0.7)' }}
-        >
-          Pulsa cualquier apartado para desplegar su contenido. La estructura
-          sigue las cuatro entregas + plan de marketing del TFM.
-        </p>
-      </header>
-
-      <div className="flex flex-col gap-5 md:gap-6">
-        {SECTIONS.map((s) => (
-          <SectionItem key={s.id} section={s} />
-        ))}
-      </div>
-    </section>
-  );
-}
-
-export default HierarchicalMenu;

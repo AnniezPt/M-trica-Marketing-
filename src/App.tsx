@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { Button } from './components/Button';
-import { TestimonialSection } from './components/TestimonialSection';
 import { PricingSection } from './components/PricingSection';
 import { TestimonialCarousel } from './components/TestimonialCarousel';
-import { HierarchicalMenu } from './components/HierarchicalMenu';
 import { AboutSection } from './components/AboutSection';
 import { QASection } from './components/QASection';
 import { PartnerSection } from './components/PartnerSection';
@@ -11,27 +9,20 @@ import { Footer } from './components/Footer';
 import { CopyrightBar } from './components/CopyrightBar';
 import { BottomNav } from './components/BottomNav';
 import { NavDrawer } from './components/NavDrawer';
+import { TopBreadcrumbs } from './components/TopBreadcrumbs';
+import { SectionModal } from './components/SectionModal';
 import { useInViewAnimation } from './hooks/useInViewAnimation';
 
-const MARQUEE_IMAGES = [
-  'https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif',
-  'https://motionsites.ai/assets/hero-portfolio-cosmic-preview-BpvWJ3Nc.gif',
-  'https://motionsites.ai/assets/hero-velorah-preview-CJNTtbpd.gif',
-  'https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif',
-  'https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif',
-  'https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif',
-  'https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif',
-  'https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif',
-];
+const MARQUEE_PLACEHOLDERS = Array.from({ length: 8 }, (_, i) => i);
 
-function Hero() {
+function Hero({ onOpenSection }: { onOpenSection: (id: string) => void }) {
   const { ref, inView } = useInViewAnimation<HTMLElement>(0.1);
 
   return (
     <section
       ref={ref}
       id="top"
-      className="max-w-[520px] mx-auto px-6 pt-12 md:pt-16 text-center"
+      className="max-w-[520px] mx-auto px-6 pt-8 md:pt-12 text-center"
     >
       <div
         className={`flex justify-center mb-6 ${inView ? 'animate-fade-in-up' : 'opacity-0'}`}
@@ -98,7 +89,10 @@ function Hero() {
         }`}
         style={{ animationDelay: '0.5s' }}
       >
-        <Button variant="primary" href="#apartados">
+        <Button
+          variant="primary"
+          onClick={() => onOpenSection('estudio-del-mercado')}
+        >
           Ver apartados
         </Button>
         <Button variant="secondary" href="#qa">
@@ -110,18 +104,33 @@ function Hero() {
 }
 
 function Marquee() {
-  const items = [...MARQUEE_IMAGES, ...MARQUEE_IMAGES];
+  const items = [...MARQUEE_PLACEHOLDERS, ...MARQUEE_PLACEHOLDERS];
   return (
-    <div className="w-full mt-16 md:mt-20 mb-16 overflow-hidden">
+    <div className="w-full mt-12 md:mt-16 mb-16 overflow-hidden">
       <div className="flex animate-marquee w-max">
-        {items.map((src, i) => (
-          <img
-            key={`${src}-${i}`}
-            src={src}
-            alt=""
+        {items.map((_, i) => (
+          <div
+            key={i}
             aria-hidden="true"
-            className="h-[220px] md:h-[400px] w-auto object-cover mx-3 rounded-2xl shadow-lg flex-shrink-0"
-          />
+            className="h-[220px] md:h-[400px] w-[280px] md:w-[520px] mx-3 rounded-2xl shadow-lg flex-shrink-0 flex items-center justify-center relative overflow-hidden"
+            style={{
+              background:
+                'linear-gradient(135deg, #F1F5F7 0%, #E5ECF0 50%, #F1F5F7 100%)',
+              border: '1px solid rgba(13,33,44,0.06)',
+            }}
+          >
+            <div
+              className="absolute inset-3 rounded-xl border-2 border-dashed flex items-center justify-center"
+              style={{ borderColor: 'rgba(13,33,44,0.1)' }}
+            >
+              <span
+                className="font-mono text-xs md:text-sm"
+                style={{ color: 'rgba(13,33,44,0.35)' }}
+              >
+                Imagen pendiente
+              </span>
+            </div>
+          </div>
         ))}
       </div>
     </div>
@@ -130,21 +139,37 @@ function Marquee() {
 
 export default function App() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [openSectionId, setOpenSectionId] = useState<string | null>(null);
+
+  const openSection = (id: string) => setOpenSectionId(id);
+  const closeSection = () => setOpenSectionId(null);
+
   return (
     <div className="bg-white min-h-screen overflow-x-hidden">
-      <Hero />
+      <TopBreadcrumbs onSelect={openSection} />
+      <Hero onOpenSection={openSection} />
       <Marquee />
-      <TestimonialSection />
-      <HierarchicalMenu />
       <PricingSection />
       <TestimonialCarousel />
       <AboutSection />
       <QASection />
       <PartnerSection />
-      <Footer />
+      <Footer onOpenApartados={() => openSection('estudio-del-mercado')} />
       <CopyrightBar />
-      <BottomNav onOpenMenu={() => setDrawerOpen(true)} />
-      <NavDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
+      <BottomNav
+        onOpenMenu={() => setDrawerOpen(true)}
+        onOpenApartados={() => openSection('estudio-del-mercado')}
+      />
+      <NavDrawer
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        onSelectSection={openSection}
+      />
+      <SectionModal
+        openId={openSectionId}
+        onClose={closeSection}
+        onNavigate={openSection}
+      />
     </div>
   );
 }

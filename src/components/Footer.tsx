@@ -2,8 +2,11 @@ import { ArrowUpRight } from 'lucide-react';
 import { Button } from './Button';
 import { useInViewAnimation } from '../hooks/useInViewAnimation';
 
-const ANCHOR_LINKS = [
-  { label: 'Apartados', href: '#apartados' },
+type Props = {
+  onOpenApartados?: () => void;
+};
+
+const STATIC_LINKS = [
   { label: 'Quiénes somos', href: '#quienes-somos' },
   { label: 'Q&A', href: '#qa' },
 ];
@@ -13,7 +16,7 @@ const EXTERNAL_LINKS = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
 ];
 
-export function Footer() {
+export function Footer({ onOpenApartados }: Props) {
   const { ref, inView } = useInViewAnimation<HTMLElement>(0.1);
   return (
     <footer ref={ref} className="w-full py-12 px-6">
@@ -35,7 +38,15 @@ export function Footer() {
           />
 
           <div className="flex flex-col gap-3">
-            {ANCHOR_LINKS.map((l) => (
+            <button
+              type="button"
+              onClick={onOpenApartados}
+              className="text-base text-left hover:opacity-70 transition-opacity"
+              style={{ color: '#051A24' }}
+            >
+              Apartados
+            </button>
+            {STATIC_LINKS.map((l) => (
               <a
                 key={l.label}
                 href={l.href}
