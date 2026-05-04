@@ -28,7 +28,11 @@ type Trail = {
 const SPAWN_INTERVAL = 80;
 const LIFETIME = 1000;
 
-export function PartnerSection() {
+type Props = {
+  onStart: () => void;
+};
+
+export function PartnerSection({ onStart }: Props) {
   const { ref, inView } = useInViewAnimation<HTMLElement>(0.1);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [trails, setTrails] = useState<Trail[]>([]);
@@ -113,7 +117,7 @@ export function PartnerSection() {
             Únete a Métrica
           </h2>
 
-          <Button variant="primary" href="#contacto" className="!px-3 !py-2">
+          <Button variant="primary" onClick={onStart} className="!px-3 !py-2">
             <img
               src={AVATAR}
               alt="Equipo Métrica Marketing"

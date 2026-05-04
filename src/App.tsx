@@ -7,6 +7,7 @@ import { BottomNav } from './components/BottomNav';
 import { NavDrawer } from './components/NavDrawer';
 import { TopBreadcrumbs } from './components/TopBreadcrumbs';
 import { SectionModal } from './components/SectionModal';
+import { BookingModal } from './components/BookingModal';
 import { useInViewAnimation } from './hooks/useInViewAnimation';
 
 const MARQUEE_PLACEHOLDERS = Array.from({ length: 8 }, (_, i) => i);
@@ -113,9 +114,11 @@ function Marquee() {
 export default function App() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [openSectionId, setOpenSectionId] = useState<string | null>(null);
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   const openSection = (id: string) => setOpenSectionId(id);
   const closeSection = () => setOpenSectionId(null);
+  const openBooking = () => setBookingOpen(true);
 
   return (
     <div className="bg-white min-h-screen overflow-x-hidden">
@@ -123,12 +126,12 @@ export default function App() {
       <Hero />
       <Marquee />
       <TestimonialCarousel />
-      <PartnerSection />
-      <Footer onOpenApartados={() => openSection('estudio-del-mercado')} />
+      <PartnerSection onStart={openBooking} />
+      <Footer onOpenSection={openSection} />
       <CopyrightBar />
       <BottomNav
         onOpenMenu={() => setDrawerOpen(true)}
-        onOpenApartados={() => openSection('estudio-del-mercado')}
+        onStart={openBooking}
       />
       <NavDrawer
         open={drawerOpen}
@@ -140,6 +143,7 @@ export default function App() {
         onClose={closeSection}
         onNavigate={openSection}
       />
+      <BookingModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
     </div>
   );
 }

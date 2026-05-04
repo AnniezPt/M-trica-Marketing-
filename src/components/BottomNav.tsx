@@ -3,10 +3,10 @@ import { Button } from './Button';
 
 type Props = {
   onOpenMenu: () => void;
-  onOpenApartados: () => void;
+  onStart: () => void;
 };
 
-export function BottomNav({ onOpenMenu, onOpenApartados }: Props) {
+export function BottomNav({ onOpenMenu, onStart }: Props) {
   return (
     <div className="fixed left-1/2 -translate-x-1/2 bottom-6 z-30">
       <div
@@ -35,8 +35,8 @@ export function BottomNav({ onOpenMenu, onOpenApartados }: Props) {
           <Menu className="w-5 h-5" style={{ color: '#051A24' }} />
         </button>
 
-        <Button variant="primary" onClick={onOpenApartados} className="!py-2">
-          Ver apartados
+        <Button variant="primary" onClick={onStart} className="!py-2">
+          Empieza con nosotros
         </Button>
       </div>
     </div>

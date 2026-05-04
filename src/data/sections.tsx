@@ -1,4 +1,6 @@
 import { ReactNode } from 'react';
+import { BusinessCanvasDiagram } from '../components/BusinessCanvasDiagram';
+import { CustomerJourneyDiagram } from '../components/CustomerJourneyDiagram';
 
 export type SectionLeaf = {
   id: string;
@@ -229,13 +231,8 @@ export const SECTION_CONTENT: SectionContent[] = [
         children: [
           {
             id: 'cj',
-            label: 'Etapas del journey',
-            detail: (
-              <p>
-                Awareness → Consideración → Decisión → Onboarding → Fidelización.
-                Cada etapa con KPI propio.
-              </p>
-            ),
+            label: 'Recorrido del cliente en 4 etapas',
+            detail: <CustomerJourneyDiagram />,
           },
         ],
       },
@@ -246,12 +243,7 @@ export const SECTION_CONTENT: SectionContent[] = [
           {
             id: 'bc',
             label: 'Lienzo de modelo de negocio',
-            detail: (
-              <p>
-                Propuesta de valor, segmentos, canales, relaciones, ingresos,
-                recursos, actividades, partners y costes.
-              </p>
-            ),
+            detail: <BusinessCanvasDiagram />,
           },
         ],
       },

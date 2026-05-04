@@ -1,14 +1,14 @@
 import { ArrowUpRight } from 'lucide-react';
-import { Button } from './Button';
 import { useInViewAnimation } from '../hooks/useInViewAnimation';
 
 type Props = {
-  onOpenApartados?: () => void;
+  onOpenSection: (id: string) => void;
 };
 
-const STATIC_LINKS = [
-  { label: 'Quiénes somos', href: '#quienes-somos' },
-  { label: 'Q&A', href: '#qa' },
+const SECTION_LINKS: { label: string; id: string }[] = [
+  { label: 'Apartados', id: 'estudio-del-mercado' },
+  { label: 'Quiénes somos', id: 'quienes-somos' },
+  { label: 'Q&A', id: 'qa' },
 ];
 
 const EXTERNAL_LINKS = [
@@ -16,7 +16,7 @@ const EXTERNAL_LINKS = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
 ];
 
-export function Footer({ onOpenApartados }: Props) {
+export function Footer({ onOpenSection }: Props) {
   const { ref, inView } = useInViewAnimation<HTMLElement>(0.1);
   return (
     <footer ref={ref} className="w-full py-12 px-6">
@@ -26,9 +26,19 @@ export function Footer({ onOpenApartados }: Props) {
         }`}
         style={{ animationDelay: '0.1s' }}
       >
-        <Button variant="primary" href="#contacto">
-          Empieza ahora
-        </Button>
+        <div className="flex items-center gap-3">
+          <img
+            src={`${import.meta.env.BASE_URL}logo.svg`}
+            alt="Métrica Marketing"
+            className="w-10 h-10 rounded-xl"
+          />
+          <span
+            className="font-serif text-xl font-semibold"
+            style={{ color: '#051A24' }}
+          >
+            Métrica Marketing
+          </span>
+        </div>
 
         <div className="flex items-start gap-6">
           <ArrowUpRight
@@ -38,23 +48,16 @@ export function Footer({ onOpenApartados }: Props) {
           />
 
           <div className="flex flex-col gap-3">
-            <button
-              type="button"
-              onClick={onOpenApartados}
-              className="text-base text-left hover:opacity-70 transition-opacity"
-              style={{ color: '#051A24' }}
-            >
-              Apartados
-            </button>
-            {STATIC_LINKS.map((l) => (
-              <a
-                key={l.label}
-                href={l.href}
-                className="text-base hover:opacity-70 transition-opacity"
+            {SECTION_LINKS.map((l) => (
+              <button
+                key={l.id}
+                type="button"
+                onClick={() => onOpenSection(l.id)}
+                className="text-base text-left hover:opacity-70 transition-opacity"
                 style={{ color: '#051A24' }}
               >
                 {l.label}
-              </a>
+              </button>
             ))}
           </div>
 
