@@ -38,7 +38,7 @@ function Hero() {
         style={{ animationDelay: '0.05s' }}
       >
         <img
-          src="/logo.svg"
+          src={`${import.meta.env.BASE_URL}logo.svg`}
           alt="Métrica Marketing"
           className="w-16 h-16 rounded-2xl"
         />
