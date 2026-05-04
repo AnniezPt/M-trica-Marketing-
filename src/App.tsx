@@ -1,9 +1,5 @@
 import { useState } from 'react';
-import { Button } from './components/Button';
-import { PricingSection } from './components/PricingSection';
 import { TestimonialCarousel } from './components/TestimonialCarousel';
-import { AboutSection } from './components/AboutSection';
-import { QASection } from './components/QASection';
 import { PartnerSection } from './components/PartnerSection';
 import { Footer } from './components/Footer';
 import { CopyrightBar } from './components/CopyrightBar';
@@ -15,7 +11,7 @@ import { useInViewAnimation } from './hooks/useInViewAnimation';
 
 const MARQUEE_PLACEHOLDERS = Array.from({ length: 8 }, (_, i) => i);
 
-function Hero({ onOpenSection }: { onOpenSection: (id: string) => void }) {
+function Hero() {
   const { ref, inView } = useInViewAnimation<HTMLElement>(0.1);
 
   return (
@@ -75,29 +71,6 @@ function Hero({ onOpenSection }: { onOpenSection: (id: string) => void }) {
           claro: convertir cada decisión de marketing en una métrica accionable
           y demostrable.
         </p>
-        <p>
-          Trabajamos las cuatro entregas del plan: estudio del mercado,
-          estrategia, plan de acción y plan financiero. Todo conectado,
-          coherente y listo para defender.
-        </p>
-        <p>Estructurado en cuatro entregas + plan de marketing del TFM.</p>
-      </div>
-
-      <div
-        className={`flex flex-col sm:flex-row gap-3 md:gap-4 mt-5 md:mt-6 justify-center ${
-          inView ? 'animate-fade-in-up' : 'opacity-0'
-        }`}
-        style={{ animationDelay: '0.5s' }}
-      >
-        <Button
-          variant="primary"
-          onClick={() => onOpenSection('estudio-del-mercado')}
-        >
-          Ver apartados
-        </Button>
-        <Button variant="secondary" href="#qa">
-          Preguntas frecuentes
-        </Button>
       </div>
     </section>
   );
@@ -147,12 +120,9 @@ export default function App() {
   return (
     <div className="bg-white min-h-screen overflow-x-hidden">
       <TopBreadcrumbs onSelect={openSection} />
-      <Hero onOpenSection={openSection} />
+      <Hero />
       <Marquee />
-      <PricingSection />
       <TestimonialCarousel />
-      <AboutSection />
-      <QASection />
       <PartnerSection />
       <Footer onOpenApartados={() => openSection('estudio-del-mercado')} />
       <CopyrightBar />

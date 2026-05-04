@@ -13,6 +13,8 @@ const SECTION_IDS = new Set([
   'estrategia-de-marketing',
   'plan-de-accion',
   'plan-financiero',
+  'quienes-somos',
+  'qa',
 ]);
 
 export function NavDrawer({ open, onClose, onSelectSection }: Props) {

@@ -283,6 +283,23 @@ export const SECTION_CONTENT: SectionContent[] = [
         ],
       },
       {
+        id: 'plan-captacion-resumen',
+        label: 'Plan de Captación',
+        children: [
+          {
+            id: 'plan-captacion-detalle',
+            label: 'Resultado esperado · ROI 3,2× (Año 1)',
+            detail: (
+              <p>
+                Atrae a tu buyer persona con una estrategia digital medible.
+                Funnel de captación en LinkedIn, SEM, Email Marketing, Redes
+                Sociales y Marketing de Afiliación.
+              </p>
+            ),
+          },
+        ],
+      },
+      {
         id: 'presupuesto',
         label: 'Presupuesto (Cuadro)',
         children: [
@@ -414,11 +431,12 @@ export const SECTION_CONTENT: SectionContent[] = [
         children: [
           {
             id: 'pf-equilibrio-detail',
-            label: 'Break-even',
+            label: 'Break-even objetivo',
             detail: (
               <p>
-                Volumen de ventas a partir del cual el proyecto cubre todos sus
-                costes.
+                Cuadro de mando integral con ingresos, costes y ratios totales.
+                El punto de equilibrio se alcanza durante el primer año según
+                la proyección financiera.
               </p>
             ),
           },
@@ -432,6 +450,198 @@ export const SECTION_CONTENT: SectionContent[] = [
             id: 'pf-ratios-detail',
             label: 'Indicadores agregados',
             detail: <p>Margen, eficiencia, liquidez y solvencia consolidados.</p>,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'quienes-somos',
+    number: '07',
+    title: 'Quiénes somos',
+    intro:
+      'Cuatro áreas perfectamente alineadas para entregar las cuatro entregas + el plan de marketing del TFM.',
+    groups: [
+      {
+        id: 'qs-equipo',
+        label: 'Equipo',
+        children: [
+          {
+            id: 'qs-direccion',
+            label: 'Estrategia y dirección',
+            detail: (
+              <p>
+                Definimos la misión, la visión y la estructura del plan de
+                marketing.
+              </p>
+            ),
+          },
+          {
+            id: 'qs-analisis',
+            label: 'Análisis y datos · Estudio del Mercado',
+            detail: (
+              <p>
+                PESTEL, PORTER, cadena de valor, ciclo de vida y DAFO–CAME.
+              </p>
+            ),
+          },
+          {
+            id: 'qs-accion',
+            label: 'Plan de Acción · Captación · Conversión · Fidelización',
+            detail: (
+              <p>
+                Diseñamos el funnel y asignamos presupuesto a cada canal con KPI.
+              </p>
+            ),
+          },
+          {
+            id: 'qs-financiero',
+            label: 'Plan Financiero · Ingresos · Costes · Ratios',
+            detail: (
+              <p>
+                Cuadro de mando, ROI/ROAS, punto de equilibrio y proyecciones.
+              </p>
+            ),
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'qa',
+    number: '08',
+    title: 'Q&A',
+    intro:
+      'Preguntas frecuentes con backlinks a cada apartado correspondiente del plan.',
+    groups: [
+      {
+        id: 'qa-mercado',
+        label: 'Estudio del Mercado',
+        children: [
+          {
+            id: 'qa-pestel',
+            label: '¿Qué es el análisis PESTEL?',
+            detail: (
+              <p>
+                Análisis del entorno externo que estudia los factores Político,
+                Económico, Social, Tecnológico, Ecológico y Legal que afectan al
+                negocio.
+              </p>
+            ),
+          },
+          {
+            id: 'qa-porter',
+            label: '¿Qué son las 5 fuerzas de Porter?',
+            detail: (
+              <p>
+                Modelo que evalúa la rivalidad del sector, amenaza de nuevos
+                entrantes, poder de proveedores, poder de clientes y amenaza de
+                sustitutos.
+              </p>
+            ),
+          },
+          {
+            id: 'qa-cadena-valor',
+            label: '¿Qué es la cadena de valor?',
+            detail: (
+              <p>
+                Esquema de actividades primarias y de soporte que muestra dónde
+                se genera valor en el servicio que ofrece Métrica Marketing.
+              </p>
+            ),
+          },
+          {
+            id: 'qa-ciclo',
+            label: '¿En qué fase del ciclo de vida estamos?',
+            detail: (
+              <p>
+                Métrica Marketing se sitúa en fase de introducción/crecimiento,
+                priorizando captación y posicionamiento.
+              </p>
+            ),
+          },
+          {
+            id: 'qa-dafo',
+            label: '¿Qué es DAFO – CAME?',
+            detail: (
+              <p>
+                DAFO identifica Debilidades, Amenazas, Fortalezas y
+                Oportunidades. CAME define la acción: Corregir, Afrontar,
+                Mantener y Explotar.
+              </p>
+            ),
+          },
+        ],
+      },
+      {
+        id: 'qa-estrategia',
+        label: 'Estrategia de Marketing',
+        children: [
+          {
+            id: 'qa-buyer',
+            label: '¿Cómo se definen los buyer persona?',
+            detail: (
+              <p>
+                Tres fichas resumidas: founder técnico, director de marketing y
+                pyme tradicional digitalizando, cada una con KPI y dolor
+                concreto.
+              </p>
+            ),
+          },
+          {
+            id: 'qa-tam',
+            label: '¿Qué diferencia hay entre TAM, SAM y SOM?',
+            detail: (
+              <p>
+                TAM es el mercado total disponible, SAM el mercado al que
+                podemos servir, y SOM la cuota realista que vamos a capturar.
+              </p>
+            ),
+          },
+        ],
+      },
+      {
+        id: 'qa-accion',
+        label: 'Plan de Acción',
+        children: [
+          {
+            id: 'qa-funnel',
+            label: '¿Qué canales hay en cada fase del funnel?',
+            detail: (
+              <p>
+                Captación y conversión: LinkedIn, SEM, Email, Redes Sociales y
+                Afiliación. Fidelización: Email Marketing y Redes Sociales.
+              </p>
+            ),
+          },
+        ],
+      },
+      {
+        id: 'qa-financiero',
+        label: 'Plan Financiero',
+        children: [
+          {
+            id: 'qa-roi',
+            label: '¿Cómo se calcula el ROI y el ROAS?',
+            detail: (
+              <p>
+                ROI = (Beneficio − Inversión) / Inversión.
+                <br />
+                ROAS = Ingresos generados por publicidad / Inversión
+                publicitaria.
+              </p>
+            ),
+          },
+          {
+            id: 'qa-equilibrio',
+            label: '¿Cuándo se alcanza el punto de equilibrio?',
+            detail: (
+              <p>
+                Está proyectado para el Año 1 según el cuadro de mando integral,
+                considerando ingresos fijos y variables sobre la estructura de
+                costes.
+              </p>
+            ),
           },
         ],
       },

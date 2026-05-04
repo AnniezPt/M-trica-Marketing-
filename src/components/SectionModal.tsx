@@ -134,34 +134,7 @@ export function SectionModal({ openId, onClose, onNavigate }: Props) {
               '0 0 0 0.5px rgba(0,0,0,0.06), 0 30px 80px rgba(0,0,0,0.18)',
           }}
         >
-          <header className="flex items-start justify-between gap-6 px-6 md:px-10 pt-6 md:pt-8 pb-4 border-b border-black/5">
-            <div className="flex-1 flex items-start gap-4">
-              <nav
-                aria-label="Migas de pan"
-                className="hidden md:flex items-center gap-1 flex-shrink-0 mt-1"
-              >
-                {SECTION_CONTENT.map((s, i) => {
-                  const active = s.id === openId;
-                  return (
-                    <button
-                      key={s.id}
-                      type="button"
-                      onClick={() => onNavigate(s.id)}
-                      className="font-mono text-xs hover:opacity-70 transition-opacity"
-                      style={{
-                        color: active ? '#0D212C' : '#273C46',
-                        fontWeight: active ? 600 : 400,
-                      }}
-                    >
-                      {s.number}
-                      {i < SECTION_CONTENT.length - 1 && (
-                        <span className="mx-1 opacity-40">/</span>
-                      )}
-                    </button>
-                  );
-                })}
-              </nav>
-            </div>
+          <header className="flex items-start justify-end gap-6 px-6 md:px-10 pt-5 md:pt-6 pb-3">
             <button
               type="button"
               onClick={onClose}
@@ -173,13 +146,7 @@ export function SectionModal({ openId, onClose, onNavigate }: Props) {
           </header>
 
           {section && (
-            <div className="flex-1 overflow-y-auto px-6 md:px-10 py-6 md:py-8">
-              <p
-                className="font-mono text-xs md:text-sm mb-3"
-                style={{ color: '#273C46' }}
-              >
-                {section.number}.
-              </p>
+            <div className="flex-1 overflow-y-auto px-6 md:px-10 pb-8 md:pb-10">
               <h2
                 className="font-serif font-semibold text-3xl md:text-5xl tracking-tight"
                 style={{ color: '#051A24' }}
@@ -199,7 +166,7 @@ export function SectionModal({ openId, onClose, onNavigate }: Props) {
                 ))}
               </div>
 
-              <div className="mt-8 flex justify-between items-center pt-6 border-t border-black/5">
+              <div className="mt-8 flex justify-between items-center gap-4 pt-6 border-t border-black/5">
                 <PrevNextNav
                   currentId={section.id}
                   onNavigate={onNavigate}
@@ -236,7 +203,7 @@ function PrevNextNav({
               className="font-mono text-[11px]"
               style={{ color: '#273C46' }}
             >
-              ← {prev.number}
+              ← Anterior
             </div>
             <div
               className="font-serif text-base font-semibold"
@@ -258,7 +225,7 @@ function PrevNextNav({
               className="font-mono text-[11px]"
               style={{ color: '#273C46' }}
             >
-              {next.number} →
+              Siguiente →
             </div>
             <div
               className="font-serif text-base font-semibold"

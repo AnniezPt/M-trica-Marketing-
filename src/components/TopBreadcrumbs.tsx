@@ -42,14 +42,8 @@ export function TopBreadcrumbs({ onSelect }: Props) {
                 <button
                   type="button"
                   onClick={() => onSelect(s.id)}
-                  className="group flex items-center gap-2 rounded-full px-3 md:px-4 py-2 hover:bg-black/[0.05] transition-colors"
+                  className="group rounded-full px-3 md:px-4 py-2 hover:bg-black/[0.05] transition-colors"
                 >
-                  <span
-                    className="font-mono text-[11px] md:text-xs"
-                    style={{ color: '#273C46' }}
-                  >
-                    {s.number}.
-                  </span>
                   <span
                     className="text-sm md:text-[15px] font-medium whitespace-nowrap"
                     style={{ color: '#0D212C' }}
