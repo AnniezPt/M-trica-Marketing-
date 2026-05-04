@@ -3,9 +3,9 @@ import { Button } from './Button';
 import { useInViewAnimation } from '../hooks/useInViewAnimation';
 
 const ANCHOR_LINKS = [
-  { label: 'Estudio del Mercado', href: '#estudio-del-mercado' },
-  { label: 'Estrategia', href: '#estrategia-de-marketing' },
-  { label: 'Plan de Acción', href: '#plan-de-accion' },
+  { label: 'Apartados', href: '#apartados' },
+  { label: 'Quiénes somos', href: '#quienes-somos' },
+  { label: 'Q&A', href: '#qa' },
 ];
 
 const EXTERNAL_LINKS = [

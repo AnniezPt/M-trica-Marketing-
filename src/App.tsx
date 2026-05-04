@@ -2,7 +2,9 @@ import { Button } from './components/Button';
 import { TestimonialSection } from './components/TestimonialSection';
 import { PricingSection } from './components/PricingSection';
 import { TestimonialCarousel } from './components/TestimonialCarousel';
-import { ProjectsSection } from './components/ProjectsSection';
+import { HierarchicalMenu } from './components/HierarchicalMenu';
+import { AboutSection } from './components/AboutSection';
+import { QASection } from './components/QASection';
 import { PartnerSection } from './components/PartnerSection';
 import { Footer } from './components/Footer';
 import { CopyrightBar } from './components/CopyrightBar';
@@ -27,8 +29,19 @@ function Hero() {
     <section
       ref={ref}
       id="top"
-      className="max-w-[440px] mx-auto px-6 pt-12 md:pt-16 text-center"
+      className="max-w-[520px] mx-auto px-6 pt-12 md:pt-16 text-center"
     >
+      <div
+        className={`flex justify-center mb-6 ${inView ? 'animate-fade-in-up' : 'opacity-0'}`}
+        style={{ animationDelay: '0.05s' }}
+      >
+        <img
+          src="/logo.svg"
+          alt="Métrica Marketing"
+          className="w-16 h-16 rounded-2xl"
+        />
+      </div>
+
       <h1
         className={`font-serif font-semibold text-[32px] md:text-[40px] lg:text-[44px] tracking-tight mb-4 ${
           inView ? 'animate-fade-in-up' : 'opacity-0'
@@ -48,7 +61,7 @@ function Hero() {
       </p>
 
       <h2
-        className={`text-[32px] md:text-[40px] lg:text-[44px] leading-[1.1] tracking-tight whitespace-nowrap ${
+        className={`text-[28px] md:text-[36px] lg:text-[44px] leading-[1.1] tracking-tight ${
           inView ? 'animate-fade-in-up' : 'opacity-0'
         }`}
         style={{ color: '#0D212C', animationDelay: '0.3s' }}
@@ -83,11 +96,11 @@ function Hero() {
         }`}
         style={{ animationDelay: '0.5s' }}
       >
-        <Button variant="primary" href="#contacto">
-          Empieza ahora
-        </Button>
-        <Button variant="secondary" href="#estudio-del-mercado">
+        <Button variant="primary" href="#apartados">
           Ver apartados
+        </Button>
+        <Button variant="secondary" href="#qa">
+          Preguntas frecuentes
         </Button>
       </div>
     </section>
@@ -105,7 +118,7 @@ function Marquee() {
             src={src}
             alt=""
             aria-hidden="true"
-            className="h-[280px] md:h-[500px] w-auto object-cover mx-3 rounded-2xl shadow-lg flex-shrink-0"
+            className="h-[220px] md:h-[400px] w-auto object-cover mx-3 rounded-2xl shadow-lg flex-shrink-0"
           />
         ))}
       </div>
@@ -119,9 +132,11 @@ export default function App() {
       <Hero />
       <Marquee />
       <TestimonialSection />
+      <HierarchicalMenu />
       <PricingSection />
       <TestimonialCarousel />
-      <ProjectsSection />
+      <AboutSection />
+      <QASection />
       <PartnerSection />
       <Footer />
       <CopyrightBar />
