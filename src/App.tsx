@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Button } from './components/Button';
 import { TestimonialSection } from './components/TestimonialSection';
 import { PricingSection } from './components/PricingSection';
@@ -9,6 +10,7 @@ import { PartnerSection } from './components/PartnerSection';
 import { Footer } from './components/Footer';
 import { CopyrightBar } from './components/CopyrightBar';
 import { BottomNav } from './components/BottomNav';
+import { NavDrawer } from './components/NavDrawer';
 import { useInViewAnimation } from './hooks/useInViewAnimation';
 
 const MARQUEE_IMAGES = [
@@ -127,6 +129,7 @@ function Marquee() {
 }
 
 export default function App() {
+  const [drawerOpen, setDrawerOpen] = useState(false);
   return (
     <div className="bg-white min-h-screen overflow-x-hidden">
       <Hero />
@@ -140,7 +143,8 @@ export default function App() {
       <PartnerSection />
       <Footer />
       <CopyrightBar />
-      <BottomNav />
+      <BottomNav onOpenMenu={() => setDrawerOpen(true)} />
+      <NavDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
     </div>
   );
 }
