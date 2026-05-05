@@ -10,10 +10,12 @@ type Props = {
 
 function LeafItem({ leaf }: { leaf: SectionLeaf }) {
   const [open, setOpen] = useState(false);
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(leaf.bulletsAlwaysExpanded ?? false);
   const hasBullets = !!leaf.bullets && leaf.bullets.length > 0;
   const hasDetail = leaf.detail !== undefined;
-  const hasContent = hasBullets || hasDetail;
+  const hasHeader = leaf.header !== undefined;
+  const hasContent = hasBullets || hasDetail || hasHeader;
+  const showToggle = hasBullets && !leaf.bulletsAlwaysExpanded;
 
   return (
     <div
@@ -42,6 +44,8 @@ function LeafItem({ leaf }: { leaf: SectionLeaf }) {
           className="px-5 md:px-6 pb-5 md:pb-6 text-sm md:text-base leading-relaxed"
           style={{ color: 'rgba(5,26,36,0.85)' }}
         >
+          {hasHeader && <div className="mb-4">{leaf.header}</div>}
+
           {hasBullets && (
             <>
               <ul className="flex flex-col gap-3">
@@ -60,36 +64,38 @@ function LeafItem({ leaf }: { leaf: SectionLeaf }) {
                         {b.title}
                       </p>
                       {expanded && (
-                        <p
+                        <div
                           className="mt-1 text-sm md:text-[15px] leading-relaxed"
                           style={{ color: 'rgba(5,26,36,0.7)' }}
                         >
                           {b.body}
-                        </p>
+                        </div>
                       )}
                     </div>
                   </li>
                 ))}
               </ul>
 
-              <button
-                type="button"
-                onClick={() => setExpanded((v) => !v)}
-                className="mt-4 inline-flex items-center gap-1.5 text-xs md:text-sm font-medium rounded-full px-3 py-1.5 transition-colors hover:bg-black/5"
-                style={{
-                  color: '#0D212C',
-                  boxShadow: '0 0 0 0.5px rgba(0,0,0,0.08)',
-                }}
-              >
-                <Plus
-                  className={`w-3.5 h-3.5 transition-transform ${expanded ? 'rotate-45' : ''}`}
-                />
-                {expanded ? 'Leer menos' : 'Leer más'}
-              </button>
+              {showToggle && (
+                <button
+                  type="button"
+                  onClick={() => setExpanded((v) => !v)}
+                  className="mt-4 inline-flex items-center gap-1.5 text-xs md:text-sm font-medium rounded-full px-3 py-1.5 transition-colors hover:bg-black/5"
+                  style={{
+                    color: '#0D212C',
+                    boxShadow: '0 0 0 0.5px rgba(0,0,0,0.08)',
+                  }}
+                >
+                  <Plus
+                    className={`w-3.5 h-3.5 transition-transform ${expanded ? 'rotate-45' : ''}`}
+                  />
+                  {expanded ? 'Leer menos' : 'Leer más'}
+                </button>
+              )}
             </>
           )}
 
-          {!hasBullets && hasDetail && <>{leaf.detail}</>}
+          {hasDetail && <div className={hasBullets || hasHeader ? 'mt-4' : ''}>{leaf.detail}</div>}
 
           {!hasContent && (
             <p
