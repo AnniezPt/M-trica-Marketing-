@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ChevronDown, ChevronLeft, ChevronRight, HelpCircle, X } from 'lucide-react';
+import { ChevronDown, ChevronLeft, ChevronRight, HelpCircle, Plus, X } from 'lucide-react';
 import { SECTION_CONTENT, SectionGroup, SectionLeaf } from '../data/sections';
 
 type Props = {
@@ -10,7 +10,10 @@ type Props = {
 
 function LeafItem({ leaf }: { leaf: SectionLeaf }) {
   const [open, setOpen] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const hasBullets = !!leaf.bullets && leaf.bullets.length > 0;
   const hasDetail = leaf.detail !== undefined;
+  const hasContent = hasBullets || hasDetail;
 
   return (
     <div
@@ -21,30 +24,83 @@ function LeafItem({ leaf }: { leaf: SectionLeaf }) {
     >
       <button
         type="button"
-        onClick={() => hasDetail && setOpen((v) => !v)}
-        className={`w-full flex items-center justify-between gap-3 px-5 md:px-6 py-4 md:py-5 text-left ${
-          hasDetail ? 'cursor-pointer hover:bg-black/[0.02]' : 'cursor-default'
-        } rounded-2xl transition-colors`}
+        onClick={() => setOpen((v) => !v)}
+        className="w-full flex items-center justify-between gap-3 px-5 md:px-6 py-4 md:py-5 text-left cursor-pointer hover:bg-black/[0.02] rounded-2xl transition-colors"
         aria-expanded={open}
       >
         <span className="text-sm md:text-base" style={{ color: '#0D212C' }}>
           {leaf.label}
         </span>
-        {hasDetail && (
-          <ChevronDown
-            className={`w-4 h-4 flex-shrink-0 transition-transform ${open ? 'rotate-180' : ''}`}
-            style={{ color: '#0D212C' }}
-          />
-        )}
+        <ChevronDown
+          className={`w-4 h-4 flex-shrink-0 transition-transform ${open ? 'rotate-180' : ''}`}
+          style={{ color: '#0D212C' }}
+        />
       </button>
 
-      {hasDetail && open && (
+      {open && (
         <div
           className="px-5 md:px-6 pb-5 md:pb-6 text-sm md:text-base leading-relaxed"
           style={{ color: 'rgba(5,26,36,0.85)' }}
         >
-          {leaf.detail}
-          {leaf.qaAnchor && (
+          {hasBullets && (
+            <>
+              <ul className="flex flex-col gap-3">
+                {leaf.bullets!.map((b, i) => (
+                  <li key={i} className="flex gap-2.5">
+                    <span
+                      aria-hidden="true"
+                      className="flex-shrink-0 mt-2 w-1.5 h-1.5 rounded-full"
+                      style={{ backgroundColor: '#0D212C' }}
+                    />
+                    <div className="flex-1">
+                      <p
+                        className="font-medium"
+                        style={{ color: '#0D212C' }}
+                      >
+                        {b.title}
+                      </p>
+                      {expanded && (
+                        <p
+                          className="mt-1 text-sm md:text-[15px] leading-relaxed"
+                          style={{ color: 'rgba(5,26,36,0.7)' }}
+                        >
+                          {b.body}
+                        </p>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+
+              <button
+                type="button"
+                onClick={() => setExpanded((v) => !v)}
+                className="mt-4 inline-flex items-center gap-1.5 text-xs md:text-sm font-medium rounded-full px-3 py-1.5 transition-colors hover:bg-black/5"
+                style={{
+                  color: '#0D212C',
+                  boxShadow: '0 0 0 0.5px rgba(0,0,0,0.08)',
+                }}
+              >
+                <Plus
+                  className={`w-3.5 h-3.5 transition-transform ${expanded ? 'rotate-45' : ''}`}
+                />
+                {expanded ? 'Leer menos' : 'Leer más'}
+              </button>
+            </>
+          )}
+
+          {!hasBullets && hasDetail && <>{leaf.detail}</>}
+
+          {!hasContent && (
+            <p
+              className="text-xs md:text-sm italic"
+              style={{ color: 'rgba(5,26,36,0.5)' }}
+            >
+              Contenido en preparación.
+            </p>
+          )}
+
+          {leaf.qaAnchor && hasContent && (
             <a
               href={leaf.qaAnchor}
               className="inline-flex items-center gap-1.5 mt-3 text-xs hover:opacity-70 transition-opacity"
@@ -62,6 +118,7 @@ function LeafItem({ leaf }: { leaf: SectionLeaf }) {
 
 function GroupItem({ group }: { group: SectionGroup }) {
   const [open, setOpen] = useState(false);
+  const hasChildren = group.children.length > 0;
   return (
     <div className="rounded-[28px] bg-[#F6F8F9] p-3 md:p-4">
       <button
@@ -84,9 +141,18 @@ function GroupItem({ group }: { group: SectionGroup }) {
 
       {open && (
         <div className="mt-3 flex flex-col gap-2">
-          {group.children.map((leaf) => (
-            <LeafItem key={leaf.id} leaf={leaf} />
-          ))}
+          {hasChildren ? (
+            group.children.map((leaf) => (
+              <LeafItem key={leaf.id} leaf={leaf} />
+            ))
+          ) : (
+            <p
+              className="px-4 py-3 text-xs md:text-sm italic"
+              style={{ color: 'rgba(5,26,36,0.5)' }}
+            >
+              Contenido en preparación.
+            </p>
+          )}
         </div>
       )}
     </div>
