@@ -80,7 +80,7 @@ export const SECTION_CONTENT: SectionContent[] = [
                   generan valor en el servicio.
                 </p>
                 <img
-                  src={`${import.meta.env.BASE_URL}cadenadevalor.PNG`}
+                  src={`${import.meta.env.BASE_URL}Cadenadevalor.JPG`}
                   alt="Cadena de valor de Métrica Marketing"
                   className="w-full rounded-2xl"
                   style={{ boxShadow: '0 0 0 0.5px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.06)' }}
