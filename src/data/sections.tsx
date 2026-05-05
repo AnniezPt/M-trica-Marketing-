@@ -74,11 +74,18 @@ export const SECTION_CONTENT: SectionContent[] = [
             id: 'cadena-valor',
             label: 'Cadena de valor',
             detail: (
-              <p>
-                Esquema visual de actividades primarias y de soporte que generan
-                valor en el servicio. (Imagen del esquema disponible en la
-                memoria del TFM.)
-              </p>
+              <div className="flex flex-col gap-3">
+                <p>
+                  Esquema visual de las actividades primarias y de soporte que
+                  generan valor en el servicio.
+                </p>
+                <img
+                  src={`${import.meta.env.BASE_URL}cadenadevalor.PNG`}
+                  alt="Cadena de valor de Métrica Marketing"
+                  className="w-full rounded-2xl"
+                  style={{ boxShadow: '0 0 0 0.5px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.06)' }}
+                />
+              </div>
             ),
             qaAnchor: '#qa-cadena-valor',
           },

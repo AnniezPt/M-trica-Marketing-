@@ -201,50 +201,50 @@ export function SectionModal({ openId, onClose, onNavigate }: Props) {
 
         {section && (
           <main key={section.id} className="animate-fade-in-up">
-            <section className="max-w-[1100px] mx-auto px-6 pt-12 md:pt-20 pb-10 text-center">
+            <section className="max-w-[900px] mx-auto px-6 pt-10 md:pt-14 pb-8 text-center">
               <p
-                className="font-mono text-xs md:text-sm mb-4"
+                className="font-mono text-[11px] md:text-xs mb-3"
                 style={{ color: '#273C46' }}
               >
                 Apartado
               </p>
               <h1
-                className="font-serif font-semibold text-[44px] md:text-[72px] lg:text-[88px] tracking-tight leading-[1.02]"
+                className="font-serif font-semibold text-[28px] md:text-[40px] lg:text-[48px] tracking-tight leading-[1.05]"
                 style={{ color: '#051A24' }}
               >
                 {section.title}
               </h1>
               <p
-                className="text-base md:text-lg max-w-2xl mx-auto mt-6 leading-relaxed"
+                className="text-sm md:text-base max-w-xl mx-auto mt-4 leading-relaxed"
                 style={{ color: 'rgba(5,26,36,0.7)' }}
               >
                 {section.intro}
               </p>
             </section>
 
-            <section className="max-w-[900px] mx-auto px-6 pb-16 flex flex-col gap-4">
+            <section className="max-w-[820px] mx-auto px-6 pb-16 flex flex-col gap-3">
               {section.groups.map((g) => (
                 <GroupItem key={g.id} group={g} />
               ))}
             </section>
 
-            <section className="max-w-[1100px] mx-auto px-6 pb-24">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-8 border-t border-black/5">
+            <section className="max-w-[1000px] mx-auto px-6 pb-24">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-8 border-t border-black/5">
                 {prev ? (
                   <button
                     type="button"
                     onClick={() => onNavigate(prev.id)}
-                    className="text-left p-6 md:p-8 rounded-3xl hover:bg-black/[0.03] transition-colors group"
+                    className="text-left p-5 md:p-6 rounded-3xl hover:bg-black/[0.03] transition-colors group"
                     style={{
                       boxShadow: '0 0 0 0.5px rgba(0,0,0,0.05)',
                     }}
                   >
-                    <div className="flex items-center gap-2 font-mono text-xs mb-2" style={{ color: '#273C46' }}>
+                    <div className="flex items-center gap-2 font-mono text-[11px] mb-1.5" style={{ color: '#273C46' }}>
                       <ChevronLeft className="w-3.5 h-3.5" />
                       Anterior
                     </div>
                     <h3
-                      className="font-serif text-2xl md:text-3xl font-semibold group-hover:translate-x-[-2px] transition-transform"
+                      className="font-serif text-lg md:text-xl font-semibold group-hover:translate-x-[-2px] transition-transform"
                       style={{ color: '#051A24' }}
                     >
                       {prev.title}
@@ -257,17 +257,17 @@ export function SectionModal({ openId, onClose, onNavigate }: Props) {
                   <button
                     type="button"
                     onClick={() => onNavigate(next.id)}
-                    className="text-right p-6 md:p-8 rounded-3xl hover:bg-black/[0.03] transition-colors group"
+                    className="text-right p-5 md:p-6 rounded-3xl hover:bg-black/[0.03] transition-colors group"
                     style={{
                       boxShadow: '0 0 0 0.5px rgba(0,0,0,0.05)',
                     }}
                   >
-                    <div className="flex items-center justify-end gap-2 font-mono text-xs mb-2" style={{ color: '#273C46' }}>
+                    <div className="flex items-center justify-end gap-2 font-mono text-[11px] mb-1.5" style={{ color: '#273C46' }}>
                       Siguiente
                       <ChevronRight className="w-3.5 h-3.5" />
                     </div>
                     <h3
-                      className="font-serif text-2xl md:text-3xl font-semibold group-hover:translate-x-[2px] transition-transform"
+                      className="font-serif text-lg md:text-xl font-semibold group-hover:translate-x-[2px] transition-transform"
                       style={{ color: '#051A24' }}
                     >
                       {next.title}
@@ -278,11 +278,11 @@ export function SectionModal({ openId, onClose, onNavigate }: Props) {
                 )}
               </div>
 
-              <div className="mt-12 flex justify-center">
+              <div className="mt-10 flex justify-center">
                 <button
                   type="button"
                   onClick={onClose}
-                  className="text-sm hover:opacity-70 transition-opacity"
+                  className="text-xs hover:opacity-70 transition-opacity"
                   style={{ color: '#273C46' }}
                 >
                   ← Volver al inicio
