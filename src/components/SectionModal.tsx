@@ -4,8 +4,9 @@ import { SECTION_CONTENT, SectionGroup, SectionLeaf } from '../data/sections';
 
 type Props = {
   openId: string | null;
+  initialGroupId?: string | null;
   onClose: () => void;
-  onNavigate: (id: string) => void;
+  onNavigate: (id: string, groupId?: string) => void;
 };
 
 function LeafItem({ leaf }: { leaf: SectionLeaf }) {
@@ -122,8 +123,14 @@ function LeafItem({ leaf }: { leaf: SectionLeaf }) {
   );
 }
 
-function GroupItem({ group }: { group: SectionGroup }) {
-  const [open, setOpen] = useState(false);
+function GroupItem({
+  group,
+  defaultOpen = false,
+}: {
+  group: SectionGroup;
+  defaultOpen?: boolean;
+}) {
+  const [open, setOpen] = useState(defaultOpen);
   const hasChildren = group.children.length > 0;
   return (
     <div className="rounded-[28px] bg-[#F6F8F9] p-3 md:p-4">
@@ -165,7 +172,7 @@ function GroupItem({ group }: { group: SectionGroup }) {
   );
 }
 
-export function SectionModal({ openId, onClose, onNavigate }: Props) {
+export function SectionModal({ openId, initialGroupId, onClose, onNavigate }: Props) {
   const idx = openId ? SECTION_CONTENT.findIndex((s) => s.id === openId) : -1;
   const section = idx >= 0 ? SECTION_CONTENT[idx] : null;
   const prev = idx > 0 ? SECTION_CONTENT[idx - 1] : null;
@@ -296,7 +303,11 @@ export function SectionModal({ openId, onClose, onNavigate }: Props) {
 
             <section className="max-w-[820px] mx-auto px-6 pb-16 flex flex-col gap-3">
               {section.groups.map((g) => (
-                <GroupItem key={g.id} group={g} />
+                <GroupItem
+                  key={`${g.id}-${initialGroupId ?? ''}`}
+                  group={g}
+                  defaultOpen={g.id === initialGroupId}
+                />
               ))}
             </section>
 

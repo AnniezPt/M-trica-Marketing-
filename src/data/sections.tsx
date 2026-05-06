@@ -1,7 +1,8 @@
 import { ReactNode } from 'react';
-import { BusinessCanvasDiagram } from '../components/BusinessCanvasDiagram';
 import { CustomerJourneyDiagram } from '../components/CustomerJourneyDiagram';
 import { TamSamSomDiagram } from '../components/TamSamSomDiagram';
+import { ChannelEmbudo } from '../components/ChannelEmbudo';
+import { publicAsset } from '../lib/publicAsset';
 
 function Chip({ children }: { children: ReactNode }) {
   return (
@@ -142,7 +143,7 @@ export const SECTION_CONTENT: SectionContent[] = [
             label: 'Cadena de valor',
             detail: (
               <img
-                src={`${import.meta.env.BASE_URL}Cadenadevalor.JPG`}
+                src={publicAsset('Cadenadevalor.JPG')}
                 alt="Cadena de valor de Métrica Marketing"
                 className="w-full rounded-2xl"
                 style={{
@@ -188,7 +189,7 @@ export const SECTION_CONTENT: SectionContent[] = [
             label: 'Ciclo de vida',
             detail: (
               <img
-                src={`${import.meta.env.BASE_URL}Ciclodevida.JPG`}
+                src={publicAsset('Ciclodevida.JPG')}
                 alt="Ciclo de vida de Métrica Marketing"
                 className="w-full rounded-2xl"
                 style={{
@@ -689,7 +690,17 @@ export const SECTION_CONTENT: SectionContent[] = [
           {
             id: 'bc',
             label: 'Lienzo de modelo de negocio',
-            detail: <BusinessCanvasDiagram />,
+            detail: (
+              <img
+                src={publicAsset('Business canva.JPG')}
+                alt="Business Canvas de Métrica Marketing"
+                className="w-full rounded-2xl"
+                style={{
+                  boxShadow:
+                    '0 0 0 0.5px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.06)',
+                }}
+              />
+            ),
           },
         ],
       },
@@ -800,30 +811,60 @@ export const SECTION_CONTENT: SectionContent[] = [
           {
             id: 'captacion',
             label: 'Fase de Captación',
-            header: (
-              <div
-                className="rounded-2xl px-5 py-4"
-                style={{
-                  backgroundColor: '#F6F8F9',
-                  color: '#0D212C',
-                }}
-              >
-                <p className="text-sm md:text-base">
-                  El objetivo de esta fase es captar{' '}
-                  <strong>3.375 leads</strong>, con un presupuesto de{' '}
-                  <strong>45.000 €</strong>. Para ello se realizan las
-                  siguientes acciones por canal.
-                </p>
+            detail: (
+              <div className="flex flex-col gap-5">
+                <div
+                  className="rounded-2xl px-5 py-4"
+                  style={{
+                    backgroundColor: '#F6F8F9',
+                    color: '#0D212C',
+                  }}
+                >
+                  <p className="text-sm md:text-base">
+                    El objetivo de esta fase es captar{' '}
+                    <strong>3.375 leads</strong>, con un presupuesto de{' '}
+                    <strong>45.000 €</strong>. Para ello se realizan las
+                    siguientes acciones por canal.
+                  </p>
+                </div>
+                <img
+                  src={publicAsset('Embudofasedecaptacion.JPG')}
+                  alt="Embudo general de la fase de captación"
+                  className="w-full rounded-2xl"
+                  style={{
+                    boxShadow:
+                      '0 0 0 0.5px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.06)',
+                  }}
+                />
+                <div className="flex flex-col gap-2">
+                  <ChannelEmbudo
+                    title="LinkedIn — 18.000 €"
+                    filename="Captacionlinkedin.JPG"
+                    alt="Embudo de captación LinkedIn"
+                  />
+                  <ChannelEmbudo
+                    title="SEM — 11.250 €"
+                    filename="Captacionseosem.JPG"
+                    alt="Embudo de captación SEO/SEM"
+                  />
+                  <ChannelEmbudo
+                    title="Email Marketing — 6.750 €"
+                    filename="Captacionemailmarketing.JPG"
+                    alt="Embudo de captación Email Marketing"
+                  />
+                  <ChannelEmbudo
+                    title="Redes Sociales — 4.500 €"
+                    filename="Captaciónredessociales.JPG"
+                    alt="Embudo de captación Redes Sociales"
+                  />
+                  <ChannelEmbudo
+                    title="Marketing de Afiliación — 4.500 €"
+                    filename="Captacionafiliacion.JPG"
+                    alt="Embudo de captación Marketing de Afiliación"
+                  />
+                </div>
               </div>
             ),
-            bulletsAlwaysExpanded: true,
-            bullets: [
-              { title: 'LinkedIn — 18.000 €' },
-              { title: 'SEM — 11.250 €' },
-              { title: 'Email Marketing — 6.750 €' },
-              { title: 'Redes Sociales — 4.500 €' },
-              { title: 'Marketing de Afiliación — 4.500 €' },
-            ],
           },
           {
             id: 'conversion',
@@ -921,16 +962,61 @@ export const SECTION_CONTENT: SectionContent[] = [
     id: 'quienes-somos',
     number: '07',
     title: 'Quiénes somos',
-    intro: 'El equipo detrás de Métrica Marketing.',
+    intro:
+      'Las cuatro fundadoras de Métrica Marketing, alumnas del Máster en Marketing Digital y e-commerce de la EAE Business School.',
     groups: [
       {
         id: 'qs-equipo',
         label: 'Equipo',
         children: [
-          { id: 'qs-direccion', label: 'Estrategia y dirección' },
-          { id: 'qs-analisis', label: 'Análisis y datos' },
-          { id: 'qs-accion', label: 'Plan de Acción' },
-          { id: 'qs-financiero', label: 'Plan Financiero' },
+          {
+            id: 'qs-paloma',
+            label: 'Paloma Estévez García',
+            detail: (
+              <p>
+                Estudió el Doble Grado de ADE y Marketing en la{' '}
+                <strong>Universidad Alfonso X El Sabio</strong>, y ahora es
+                alumna del Máster en Marketing Digital y e-commerce en la{' '}
+                <strong>EAE Business School</strong>.
+              </p>
+            ),
+          },
+          {
+            id: 'qs-anac',
+            label: 'Ana Catalina Pérez de Toledo',
+            detail: (
+              <p>
+                Estudió Ciencias del Deporte en la{' '}
+                <strong>Universidad Complutense</strong>, y ahora es alumna del
+                Máster en Marketing Digital y e-commerce en la{' '}
+                <strong>EAE Business School</strong>.
+              </p>
+            ),
+          },
+          {
+            id: 'qs-anai',
+            label: 'Ana Isabel Morilla Rubiato',
+            detail: (
+              <p>
+                Estudió ADE en la <strong>Universidad de Alcalá</strong>, y
+                ahora es alumna del Máster en Marketing Digital y e-commerce en
+                la <strong>EAE Business School</strong>.
+              </p>
+            ),
+          },
+          {
+            id: 'qs-teresa',
+            label: 'Teresa García Herrera',
+            detail: (
+              <p>
+                Estudió Comunicación Audiovisual con Título Propio en
+                Fotografía Digital en la{' '}
+                <strong>Universidad Francisco de Vitoria</strong>, y ahora es
+                alumna del Máster en Marketing Digital y e-commerce en la{' '}
+                <strong>EAE Business School</strong>.
+              </p>
+            ),
+          },
         ],
       },
     ],

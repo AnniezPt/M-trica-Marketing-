@@ -114,10 +114,17 @@ function Marquee() {
 export default function App() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [openSectionId, setOpenSectionId] = useState<string | null>(null);
+  const [openGroupId, setOpenGroupId] = useState<string | null>(null);
   const [bookingOpen, setBookingOpen] = useState(false);
 
-  const openSection = (id: string) => setOpenSectionId(id);
-  const closeSection = () => setOpenSectionId(null);
+  const openSection = (id: string, groupId?: string) => {
+    setOpenSectionId(id);
+    setOpenGroupId(groupId ?? null);
+  };
+  const closeSection = () => {
+    setOpenSectionId(null);
+    setOpenGroupId(null);
+  };
   const openBooking = () => setBookingOpen(true);
 
   return (
@@ -140,6 +147,7 @@ export default function App() {
       />
       <SectionModal
         openId={openSectionId}
+        initialGroupId={openGroupId}
         onClose={closeSection}
         onNavigate={openSection}
       />
