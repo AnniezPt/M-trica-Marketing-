@@ -8,26 +8,22 @@ const STEPS: Step[] = [
   {
     number: 1,
     label: 'Reconocimiento',
-    description:
-      'Inbound con SEO, publicidad digital en Google Ads y Redes Sociales. Outbound con Email Marketing y LinkedIn.',
+    description: 'Atracción de clientes con SEO, anuncios y redes.',
   },
   {
     number: 2,
     label: 'Consideración',
-    description:
-      'Llamada estratégica con envío de formulario para rellenar sus datos para entregar el producto + caso de éxito.',
+    description: 'Contacto inicial y análisis de necesidades.',
   },
   {
     number: 3,
     label: 'Decisión',
-    description:
-      'Presentación del Plan de Marketing + Packs, contratación del correspondiente y pago.',
+    description: 'Propuesta de plan y elección del servicio.',
   },
   {
     number: 4,
     label: 'Fidelización',
-    description:
-      'Reuniones de ejecución y seguimiento dependiendo del pack. Evaluación del rendimiento y de los resultados.',
+    description: 'Seguimiento, optimización y crecimiento continuo.',
   },
 ];
 

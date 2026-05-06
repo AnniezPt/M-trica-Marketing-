@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { BusinessCanvasDiagram } from '../components/BusinessCanvasDiagram';
 import { CustomerJourneyDiagram } from '../components/CustomerJourneyDiagram';
+import { TamSamSomDiagram } from '../components/TamSamSomDiagram';
 
 function Chip({ children }: { children: ReactNode }) {
   return (
@@ -35,7 +36,7 @@ function BuyerHeader({ chips }: { chips: string[] }) {
 
 export type LeafBullet = {
   title: string;
-  body: ReactNode;
+  body?: ReactNode;
 };
 
 export type SectionLeaf = {
@@ -663,9 +664,11 @@ export const SECTION_CONTENT: SectionContent[] = [
         id: 'tam-sam-som',
         label: 'TAM · SAM · SOM',
         children: [
-          { id: 'tam', label: 'TAM' },
-          { id: 'sam', label: 'SAM' },
-          { id: 'som', label: 'SOM' },
+          {
+            id: 'tss-diagrama',
+            label: 'Mercado total · disponible · objetivo',
+            detail: <TamSamSomDiagram />,
+          },
         ],
       },
       {
@@ -702,20 +705,175 @@ export const SECTION_CONTENT: SectionContent[] = [
       {
         id: 'objetivos-online',
         label: 'Objetivos de Marketing Online',
-        children: [{ id: 'obj', label: 'KPIs principales' }],
+        children: [
+          {
+            id: 'obj',
+            label: 'Objetivos Año 1',
+            detail: (
+              <BulletList
+                items={[
+                  'Llegar a 300.000 € de ingresos en el año 1.',
+                  'Captar 3.375 leads.',
+                  'Convertir el 40% de los leads el año 1.',
+                  'Posicionarnos como referente en marketing con IA.',
+                  'Establecer alianzas estratégicas con agencias digitales o consultoras.',
+                ]}
+              />
+            ),
+          },
+        ],
       },
       {
         id: 'presupuesto',
         label: 'Presupuesto (Cuadro)',
-        children: [{ id: 'pres', label: 'Distribución' }],
+        children: [
+          {
+            id: 'pres',
+            label: 'Distribución por fase',
+            header: (
+              <div
+                className="rounded-2xl px-5 py-4"
+                style={{
+                  backgroundColor: '#051A24',
+                  color: '#F6FCFF',
+                }}
+              >
+                <div
+                  className="font-mono text-[11px] uppercase tracking-wider"
+                  style={{ color: 'rgba(246,252,255,0.7)' }}
+                >
+                  Total
+                </div>
+                <div className="font-serif text-2xl md:text-3xl font-semibold mt-1">
+                  100.000 €
+                </div>
+              </div>
+            ),
+            bullets: [
+              {
+                title: 'Captación · 45.000 €',
+                body: (
+                  <BulletList
+                    items={[
+                      'LinkedIn: 18.000 €',
+                      'SEM: 11.250 €',
+                      'Email Marketing: 6.750 €',
+                      'Redes Sociales: 4.500 €',
+                      'Marketing de Afiliación: 4.500 €',
+                    ]}
+                  />
+                ),
+              },
+              {
+                title: 'Conversión · 40.000 €',
+                body: (
+                  <BulletList
+                    items={[
+                      'LinkedIn: 16.000 €',
+                      'SEM: 10.000 €',
+                      'Email Marketing: 6.000 €',
+                      'Redes Sociales: 4.000 €',
+                      'Marketing de Afiliación: 4.000 €',
+                    ]}
+                  />
+                ),
+              },
+              {
+                title: 'Fidelización · 15.000 €',
+                body: (
+                  <BulletList
+                    items={[
+                      'Email Marketing: 7.500 €',
+                      'Redes Sociales: 7.500 €',
+                    ]}
+                  />
+                ),
+              },
+            ],
+          },
+        ],
       },
       {
         id: 'estrategia-digital',
         label: 'Estrategia de Marketing Digital',
         children: [
-          { id: 'captacion', label: 'Fase de Captación' },
-          { id: 'conversion', label: 'Fase de Conversión' },
-          { id: 'fidelizacion', label: 'Fase de Fidelización' },
+          {
+            id: 'captacion',
+            label: 'Fase de Captación',
+            header: (
+              <div
+                className="rounded-2xl px-5 py-4"
+                style={{
+                  backgroundColor: '#F6F8F9',
+                  color: '#0D212C',
+                }}
+              >
+                <p className="text-sm md:text-base">
+                  El objetivo de esta fase es captar{' '}
+                  <strong>3.375 leads</strong>, con un presupuesto de{' '}
+                  <strong>45.000 €</strong>. Para ello se realizan las
+                  siguientes acciones por canal.
+                </p>
+              </div>
+            ),
+            bulletsAlwaysExpanded: true,
+            bullets: [
+              { title: 'LinkedIn — 18.000 €' },
+              { title: 'SEM — 11.250 €' },
+              { title: 'Email Marketing — 6.750 €' },
+              { title: 'Redes Sociales — 4.500 €' },
+              { title: 'Marketing de Afiliación — 4.500 €' },
+            ],
+          },
+          {
+            id: 'conversion',
+            label: 'Fase de Conversión',
+            header: (
+              <div
+                className="rounded-2xl px-5 py-4"
+                style={{
+                  backgroundColor: '#F6F8F9',
+                  color: '#0D212C',
+                }}
+              >
+                <p className="text-sm md:text-base">
+                  Presupuesto de <strong>40.000 €</strong> destinado a
+                  convertir los leads captados en clientes.
+                </p>
+              </div>
+            ),
+            bulletsAlwaysExpanded: true,
+            bullets: [
+              { title: 'LinkedIn — 16.000 €' },
+              { title: 'SEM — 10.000 €' },
+              { title: 'Email Marketing — 6.000 €' },
+              { title: 'Redes Sociales — 4.000 €' },
+              { title: 'Marketing de Afiliación — 4.000 €' },
+            ],
+          },
+          {
+            id: 'fidelizacion',
+            label: 'Fase de Fidelización',
+            header: (
+              <div
+                className="rounded-2xl px-5 py-4"
+                style={{
+                  backgroundColor: '#F6F8F9',
+                  color: '#0D212C',
+                }}
+              >
+                <p className="text-sm md:text-base">
+                  Presupuesto de <strong>15.000 €</strong> destinado a retener
+                  y maximizar el valor de los clientes captados.
+                </p>
+              </div>
+            ),
+            bulletsAlwaysExpanded: true,
+            bullets: [
+              { title: 'Email Marketing — 7.500 €' },
+              { title: 'Redes Sociales — 7.500 €' },
+            ],
+          },
         ],
       },
     ],

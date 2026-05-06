@@ -63,7 +63,7 @@ function LeafItem({ leaf }: { leaf: SectionLeaf }) {
                       >
                         {b.title}
                       </p>
-                      {expanded && (
+                      {expanded && b.body && (
                         <div
                           className="mt-1 text-sm md:text-[15px] leading-relaxed"
                           style={{ color: 'rgba(5,26,36,0.7)' }}
