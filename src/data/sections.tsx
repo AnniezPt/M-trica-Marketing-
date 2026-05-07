@@ -736,7 +736,7 @@ export const SECTION_CONTENT: SectionContent[] = [
       },
       {
         id: 'presupuesto',
-        label: 'Presupuesto (Cuadro)',
+        label: 'Presupuesto',
         children: [
           {
             id: 'pres',
@@ -854,7 +854,7 @@ export const SECTION_CONTENT: SectionContent[] = [
                   />
                   <ChannelEmbudo
                     title="Redes Sociales — 4.500 €"
-                    filename="Captaciónredessociales.JPG"
+                    filename="Captacionredess.JPG"
                     alt="Embudo de captación Redes Sociales"
                   />
                   <ChannelEmbudo
@@ -869,28 +869,59 @@ export const SECTION_CONTENT: SectionContent[] = [
           {
             id: 'conversion',
             label: 'Fase de Conversión',
-            header: (
-              <div
-                className="rounded-2xl px-5 py-4"
-                style={{
-                  backgroundColor: '#F6F8F9',
-                  color: '#0D212C',
-                }}
-              >
-                <p className="text-sm md:text-base">
-                  Presupuesto de <strong>40.000 €</strong> destinado a
-                  convertir los leads captados en clientes.
-                </p>
+            detail: (
+              <div className="flex flex-col gap-5">
+                <div
+                  className="rounded-2xl px-5 py-4"
+                  style={{
+                    backgroundColor: '#F6F8F9',
+                    color: '#0D212C',
+                  }}
+                >
+                  <p className="text-sm md:text-base">
+                    Presupuesto de <strong>40.000 €</strong> destinado a
+                    convertir los leads captados en clientes. Acciones por
+                    canal:
+                  </p>
+                </div>
+                <img
+                  src={publicAsset('Embudoconversion.JPG')}
+                  alt="Embudo general de la fase de conversión"
+                  className="w-full rounded-2xl"
+                  style={{
+                    boxShadow:
+                      '0 0 0 0.5px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.06)',
+                  }}
+                />
+                <div className="flex flex-col gap-2">
+                  <ChannelEmbudo
+                    title="LinkedIn — 16.000 €"
+                    filename="Converlinkedin.JPG"
+                    alt="Embudo de conversión LinkedIn"
+                  />
+                  <ChannelEmbudo
+                    title="SEM — 10.000 €"
+                    filename="Conversem.JPG"
+                    alt="Embudo de conversión SEO/SEM"
+                  />
+                  <ChannelEmbudo
+                    title="Email Marketing — 6.000 €"
+                    filename="Converemailmark.JPG"
+                    alt="Embudo de conversión Email Marketing"
+                  />
+                  <ChannelEmbudo
+                    title="Redes Sociales — 4.000 €"
+                    filename="Converredessociales.JPG"
+                    alt="Embudo de conversión Redes Sociales"
+                  />
+                  <ChannelEmbudo
+                    title="Marketing de Afiliación — 4.000 €"
+                    filename="Convemktafiliacion.JPG"
+                    alt="Embudo de conversión Marketing de Afiliación"
+                  />
+                </div>
               </div>
             ),
-            bulletsAlwaysExpanded: true,
-            bullets: [
-              { title: 'LinkedIn — 16.000 €' },
-              { title: 'SEM — 10.000 €' },
-              { title: 'Email Marketing — 6.000 €' },
-              { title: 'Redes Sociales — 4.000 €' },
-              { title: 'Marketing de Afiliación — 4.000 €' },
-            ],
           },
           {
             id: 'fidelizacion',
