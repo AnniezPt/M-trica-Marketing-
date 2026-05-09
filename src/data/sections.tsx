@@ -1039,7 +1039,7 @@ export const SECTION_CONTENT: SectionContent[] = [
                     Resultado de explotación
                   </div>
                   <div
-                    className="font-serif font-semibold text-2xl md:text-3xl mt-3"
+                    className="font-serif font-semibold text-2xl md:text-3xl mt-3 whitespace-nowrap"
                     style={{ color: '#051A24' }}
                   >
                     229.389,2 €
@@ -1059,7 +1059,7 @@ export const SECTION_CONTENT: SectionContent[] = [
                     ROI medio anual
                   </div>
                   <div
-                    className="font-serif font-semibold text-2xl md:text-3xl mt-3"
+                    className="font-serif font-semibold text-2xl md:text-3xl mt-3 whitespace-nowrap"
                     style={{ color: '#051A24' }}
                   >
                     205,53 %
@@ -1079,7 +1079,7 @@ export const SECTION_CONTENT: SectionContent[] = [
                     ROAS
                   </div>
                   <div
-                    className="font-serif font-semibold text-2xl md:text-3xl mt-3"
+                    className="font-serif font-semibold text-2xl md:text-3xl mt-3 whitespace-nowrap"
                     style={{ color: '#051A24' }}
                   >
                     5,64 €
@@ -1123,7 +1123,7 @@ export const SECTION_CONTENT: SectionContent[] = [
                       Punto de equilibrio
                     </div>
                     <div
-                      className="font-serif font-semibold text-2xl md:text-3xl mt-3"
+                      className="font-serif font-semibold text-2xl md:text-3xl mt-3 whitespace-nowrap"
                       style={{ color: '#051A24' }}
                     >
                       ≈ 73.650 €
@@ -1149,7 +1149,7 @@ export const SECTION_CONTENT: SectionContent[] = [
                       Empresas necesarias
                     </div>
                     <div
-                      className="font-serif font-semibold text-2xl md:text-3xl mt-3"
+                      className="font-serif font-semibold text-2xl md:text-3xl mt-3 whitespace-nowrap"
                       style={{ color: '#051A24' }}
                     >
                       ≈ 36
