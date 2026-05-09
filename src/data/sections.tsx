@@ -3,6 +3,11 @@ import { CustomerJourneyDiagram } from '../components/CustomerJourneyDiagram';
 import { TamSamSomDiagram } from '../components/TamSamSomDiagram';
 import { ChannelEmbudo } from '../components/ChannelEmbudo';
 import { publicAsset } from '../lib/publicAsset';
+import {
+  CAPTACION_CHANNELS,
+  CONVERSION_CHANNELS,
+  FIDELIZACION_CHANNELS,
+} from './channels';
 
 function Chip({ children }: { children: ReactNode }) {
   return (
@@ -815,10 +820,7 @@ export const SECTION_CONTENT: SectionContent[] = [
               <div className="flex flex-col gap-5">
                 <div
                   className="rounded-2xl px-5 py-4"
-                  style={{
-                    backgroundColor: '#F6F8F9',
-                    color: '#0D212C',
-                  }}
+                  style={{ backgroundColor: '#F6F8F9', color: '#0D212C' }}
                 >
                   <p className="text-sm md:text-base">
                     El objetivo de esta fase es captar{' '}
@@ -837,31 +839,15 @@ export const SECTION_CONTENT: SectionContent[] = [
                   }}
                 />
                 <div className="flex flex-col gap-2">
-                  <ChannelEmbudo
-                    title="LinkedIn — 18.000 €"
-                    filename="Captacionlinkedin.JPG"
-                    alt="Embudo de captación LinkedIn"
-                  />
-                  <ChannelEmbudo
-                    title="SEM — 11.250 €"
-                    filename="Captacionseosem.JPG"
-                    alt="Embudo de captación SEO/SEM"
-                  />
-                  <ChannelEmbudo
-                    title="Email Marketing — 6.750 €"
-                    filename="Captacionemailmarketing.JPG"
-                    alt="Embudo de captación Email Marketing"
-                  />
-                  <ChannelEmbudo
-                    title="Redes Sociales — 4.500 €"
-                    filename="Captacionredess.JPG"
-                    alt="Embudo de captación Redes Sociales"
-                  />
-                  <ChannelEmbudo
-                    title="Marketing de Afiliación — 4.500 €"
-                    filename="Captacionafiliacion.JPG"
-                    alt="Embudo de captación Marketing de Afiliación"
-                  />
+                  {CAPTACION_CHANNELS.map((c) => (
+                    <ChannelEmbudo
+                      key={c.title}
+                      title={c.title}
+                      filename={c.filename}
+                      alt={c.alt}
+                      details={c.details}
+                    />
+                  ))}
                 </div>
               </div>
             ),
@@ -873,15 +859,13 @@ export const SECTION_CONTENT: SectionContent[] = [
               <div className="flex flex-col gap-5">
                 <div
                   className="rounded-2xl px-5 py-4"
-                  style={{
-                    backgroundColor: '#F6F8F9',
-                    color: '#0D212C',
-                  }}
+                  style={{ backgroundColor: '#F6F8F9', color: '#0D212C' }}
                 >
                   <p className="text-sm md:text-base">
-                    Presupuesto de <strong>40.000 €</strong> destinado a
-                    convertir los leads captados en clientes. Acciones por
-                    canal:
+                    El objetivo de esta fase es convertir{' '}
+                    <strong>147 clientes</strong>, con un presupuesto de{' '}
+                    <strong>40.000 €</strong>. Para ello se realizan las
+                    siguientes acciones por canal.
                   </p>
                 </div>
                 <img
@@ -894,31 +878,15 @@ export const SECTION_CONTENT: SectionContent[] = [
                   }}
                 />
                 <div className="flex flex-col gap-2">
-                  <ChannelEmbudo
-                    title="LinkedIn — 16.000 €"
-                    filename="Converlinkedin.JPG"
-                    alt="Embudo de conversión LinkedIn"
-                  />
-                  <ChannelEmbudo
-                    title="SEM — 10.000 €"
-                    filename="Conversem.JPG"
-                    alt="Embudo de conversión SEO/SEM"
-                  />
-                  <ChannelEmbudo
-                    title="Email Marketing — 6.000 €"
-                    filename="Converemailmark.JPG"
-                    alt="Embudo de conversión Email Marketing"
-                  />
-                  <ChannelEmbudo
-                    title="Redes Sociales — 4.000 €"
-                    filename="Converredessociales.JPG"
-                    alt="Embudo de conversión Redes Sociales"
-                  />
-                  <ChannelEmbudo
-                    title="Marketing de Afiliación — 4.000 €"
-                    filename="Convemktafiliacion.JPG"
-                    alt="Embudo de conversión Marketing de Afiliación"
-                  />
+                  {CONVERSION_CHANNELS.map((c) => (
+                    <ChannelEmbudo
+                      key={c.title}
+                      title={c.title}
+                      filename={c.filename}
+                      alt={c.alt}
+                      details={c.details}
+                    />
+                  ))}
                 </div>
               </div>
             ),
@@ -926,25 +894,41 @@ export const SECTION_CONTENT: SectionContent[] = [
           {
             id: 'fidelizacion',
             label: 'Fase de Fidelización',
-            header: (
-              <div
-                className="rounded-2xl px-5 py-4"
-                style={{
-                  backgroundColor: '#F6F8F9',
-                  color: '#0D212C',
-                }}
-              >
-                <p className="text-sm md:text-base">
-                  Presupuesto de <strong>15.000 €</strong> destinado a retener
-                  y maximizar el valor de los clientes captados.
-                </p>
+            detail: (
+              <div className="flex flex-col gap-5">
+                <div
+                  className="rounded-2xl px-5 py-4"
+                  style={{ backgroundColor: '#F6F8F9', color: '#0D212C' }}
+                >
+                  <p className="text-sm md:text-base">
+                    El objetivo de esta fase es fidelizar{' '}
+                    <strong>59 clientes</strong>, con un presupuesto de{' '}
+                    <strong>15.000 €</strong>. Para ello se realizan las
+                    siguientes acciones por canal.
+                  </p>
+                </div>
+                <img
+                  src={publicAsset('Embudofide.JPG')}
+                  alt="Embudo general de la fase de fidelización"
+                  className="w-full rounded-2xl"
+                  style={{
+                    boxShadow:
+                      '0 0 0 0.5px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.06)',
+                  }}
+                />
+                <div className="flex flex-col gap-2">
+                  {FIDELIZACION_CHANNELS.map((c) => (
+                    <ChannelEmbudo
+                      key={c.title}
+                      title={c.title}
+                      filename={c.filename}
+                      alt={c.alt}
+                      details={c.details}
+                    />
+                  ))}
+                </div>
               </div>
             ),
-            bulletsAlwaysExpanded: true,
-            bullets: [
-              { title: 'Email Marketing — 7.500 €' },
-              { title: 'Redes Sociales — 7.500 €' },
-            ],
           },
         ],
       },
@@ -960,32 +944,249 @@ export const SECTION_CONTENT: SectionContent[] = [
       {
         id: 'pf-mando',
         label: 'Cuadro de mando integral',
-        children: [{ id: 'pf-mando-detail', label: 'Indicadores clave' }],
+        children: [
+          {
+            id: 'pf-mando-detail',
+            label: 'Ticket medio · Beneficio · Ingreso · ROI',
+            detail: (
+              <img
+                src={publicAsset('Cuadrodemandointegral.JPG')}
+                alt="Cuadro de mando integral de Métrica Marketing"
+                className="w-full rounded-2xl"
+                style={{
+                  boxShadow:
+                    '0 0 0 0.5px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.06)',
+                }}
+              />
+            ),
+          },
+        ],
       },
       {
         id: 'pf-ingresos',
         label: 'Ingresos',
-        children: [{ id: 'pf-ingresos-detail', label: 'Variables · Fijos · Medios' }],
+        children: [
+          {
+            id: 'pf-ingresos-detail',
+            label: 'Variables · Fijos · Medios',
+            bulletsAlwaysExpanded: true,
+            bullets: [
+              {
+                title: 'Modelo híbrido',
+                body: 'Combinación de ingresos fijos (nuevas contrataciones) y variables (renovaciones).',
+              },
+              {
+                title: 'Total anual',
+                body: 'Aproximadamente 341.000 €.',
+              },
+              {
+                title: 'Ingreso medio',
+                body: 'Alrededor de 2.180 € mensuales por cliente.',
+              },
+              {
+                title: 'Idea clave',
+                body: 'Estabilidad con ingresos fijos y crecimiento con renovaciones.',
+              },
+            ],
+          },
+        ],
       },
       {
         id: 'pf-costes',
         label: 'Costes',
-        children: [{ id: 'pf-costes-detail', label: 'Fijos · Variables · Medios' }],
+        children: [
+          {
+            id: 'pf-costes-detail',
+            label: 'Fijos · Variables · Medios',
+            bulletsAlwaysExpanded: true,
+            bullets: [
+              {
+                title: 'Captación · ~46.000 €',
+                body: 'Inversión en generación de leads en LinkedIn Ads y Sales Navigator, redes sociales (Meta y TikTok), email marketing, SEO/SEM y afiliación. Modelo mixto: costes fijos (herramientas y setup) + variables (publicidad). CPL medio ~13 € por lead.',
+              },
+              {
+                title: 'Conversión · ~41.000 €',
+                body: 'Inversión en cerrar clientes mediante remarketing y seguimiento: Google Ads (remarketing), LinkedIn Ads, email marketing, redes sociales y afiliación. Enfoque en rendimiento (CPA). CPA medio entre ~200 € y 300 € (LinkedIn algo superior).',
+              },
+              {
+                title: 'Fidelización · ~7.500 – 8.000 €',
+                body: 'Inversión en retención y venta cruzada: email marketing automatizado y contenidos de nurturing. Objetivo: aumentar el valor del cliente (LTV).',
+              },
+            ],
+          },
+        ],
       },
       {
         id: 'pf-explotacion',
         label: 'Resultado de Explotación',
-        children: [{ id: 'pf-explotacion-detail', label: 'ROI · ROAS' }],
+        children: [
+          {
+            id: 'pf-explotacion-detail',
+            label: 'Resultado · ROI · ROAS',
+            detail: (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div
+                  className="rounded-2xl bg-white p-5 md:p-6"
+                  style={{
+                    boxShadow:
+                      '0 0 0 0.5px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.05)',
+                  }}
+                >
+                  <div
+                    className="font-mono text-[11px] uppercase tracking-wider"
+                    style={{ color: '#273C46' }}
+                  >
+                    Resultado de explotación
+                  </div>
+                  <div
+                    className="font-serif font-semibold text-2xl md:text-3xl mt-3"
+                    style={{ color: '#051A24' }}
+                  >
+                    229.389,2 €
+                  </div>
+                </div>
+                <div
+                  className="rounded-2xl bg-white p-5 md:p-6"
+                  style={{
+                    boxShadow:
+                      '0 0 0 0.5px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.05)',
+                  }}
+                >
+                  <div
+                    className="font-mono text-[11px] uppercase tracking-wider"
+                    style={{ color: '#273C46' }}
+                  >
+                    ROI medio anual
+                  </div>
+                  <div
+                    className="font-serif font-semibold text-2xl md:text-3xl mt-3"
+                    style={{ color: '#051A24' }}
+                  >
+                    205,53 %
+                  </div>
+                </div>
+                <div
+                  className="rounded-2xl bg-white p-5 md:p-6"
+                  style={{
+                    boxShadow:
+                      '0 0 0 0.5px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.05)',
+                  }}
+                >
+                  <div
+                    className="font-mono text-[11px] uppercase tracking-wider"
+                    style={{ color: '#273C46' }}
+                  >
+                    ROAS
+                  </div>
+                  <div
+                    className="font-serif font-semibold text-2xl md:text-3xl mt-3"
+                    style={{ color: '#051A24' }}
+                  >
+                    5,64 €
+                  </div>
+                </div>
+              </div>
+            ),
+          },
+        ],
       },
       {
         id: 'pf-equilibrio',
         label: 'Punto de Equilibrio (Año 1)',
-        children: [{ id: 'pf-equilibrio-detail', label: 'Break-even objetivo' }],
+        children: [
+          {
+            id: 'pf-equilibrio-detail',
+            label: 'Break-even Año 1',
+            detail: (
+              <div className="flex flex-col gap-4">
+                <img
+                  src={publicAsset('Puntodeequilibrioañouno.JPG')}
+                  alt="Análisis del Umbral de Rentabilidad de Métrica Marketing"
+                  className="w-full rounded-2xl"
+                  style={{
+                    boxShadow:
+                      '0 0 0 0.5px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.06)',
+                  }}
+                />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div
+                    className="rounded-2xl bg-white p-5 md:p-6"
+                    style={{
+                      boxShadow:
+                        '0 0 0 0.5px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.05)',
+                    }}
+                  >
+                    <div
+                      className="font-mono text-[11px] uppercase tracking-wider"
+                      style={{ color: '#273C46' }}
+                    >
+                      Punto de equilibrio
+                    </div>
+                    <div
+                      className="font-serif font-semibold text-2xl md:text-3xl mt-3"
+                      style={{ color: '#051A24' }}
+                    >
+                      ≈ 73.650 €
+                    </div>
+                    <p
+                      className="text-xs mt-2"
+                      style={{ color: 'rgba(5,26,36,0.65)' }}
+                    >
+                      Datos anuales totales
+                    </p>
+                  </div>
+                  <div
+                    className="rounded-2xl bg-white p-5 md:p-6"
+                    style={{
+                      boxShadow:
+                        '0 0 0 0.5px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.05)',
+                    }}
+                  >
+                    <div
+                      className="font-mono text-[11px] uppercase tracking-wider"
+                      style={{ color: '#273C46' }}
+                    >
+                      Empresas necesarias
+                    </div>
+                    <div
+                      className="font-serif font-semibold text-2xl md:text-3xl mt-3"
+                      style={{ color: '#051A24' }}
+                    >
+                      ≈ 36
+                    </div>
+                    <p
+                      className="text-xs mt-2"
+                      style={{ color: 'rgba(5,26,36,0.65)' }}
+                    >
+                      Estimación a partir del ticket medio
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ),
+          },
+        ],
       },
       {
         id: 'pf-ratios',
         label: 'Ratios (Totales)',
-        children: [{ id: 'pf-ratios-detail', label: 'Indicadores agregados' }],
+        children: [
+          {
+            id: 'pf-ratios-detail',
+            label: 'Indicadores agregados',
+            detail: (
+              <img
+                src={publicAsset('Ratiostotales.JPG')}
+                alt="Cuadro de ratios totales de Métrica Marketing"
+                className="w-full rounded-2xl"
+                style={{
+                  boxShadow:
+                    '0 0 0 0.5px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.06)',
+                }}
+              />
+            ),
+          },
+        ],
       },
     ],
   },
@@ -1056,27 +1257,69 @@ export const SECTION_CONTENT: SectionContent[] = [
     id: 'qa',
     number: '08',
     title: 'Q&A',
-    intro: 'Preguntas frecuentes sobre el plan de marketing.',
+    intro: 'Preguntas frecuentes sobre el plan de marketing de Métrica Marketing.',
     groups: [
       {
-        id: 'qa-mercado',
-        label: 'Estudio del Mercado',
-        children: [],
-      },
-      {
-        id: 'qa-estrategia',
-        label: 'Estrategia de Marketing',
-        children: [],
-      },
-      {
-        id: 'qa-accion',
-        label: 'Plan de Acción',
-        children: [],
-      },
-      {
-        id: 'qa-financiero',
-        label: 'Plan Financiero',
-        children: [],
+        id: 'qa-faqs',
+        label: 'Preguntas frecuentes',
+        children: [
+          {
+            id: 'qa-1',
+            label: '¿Cuál es la oportunidad y el verdadero beneficio de este mercado?',
+            detail: (
+              <p>
+                Digitalizarse pese a la falta de tiempo, presupuesto y
+                conocimientos. Métrica Marketing ofrece planes automatizados y
+                servicios asequibles que hacen viable la transformación digital
+                para autónomos y PYMES.
+              </p>
+            ),
+          },
+          {
+            id: 'qa-2',
+            label: '¿Qué problema quieren resolver con Métrica Marketing?',
+            detail: (
+              <p>
+                Aborda la falta de estrategias de marketing estructuradas en
+                autónomos y PYMES españolas, con un modelo híbrido que combina
+                IA y experiencia humana.
+              </p>
+            ),
+          },
+          {
+            id: 'qa-3',
+            label: '¿A quién va dirigido principalmente este proyecto?',
+            detail: (
+              <p>
+                A autónomos y PYMES que reconocen la necesidad de digitalizar
+                su empresa pero no cuentan con un departamento de marketing
+                interno consolidado.
+              </p>
+            ),
+          },
+          {
+            id: 'qa-4',
+            label: '¿Qué canal se considera más fuerte para captar leads?',
+            detail: (
+              <p>
+                LinkedIn es uno de los canales clave porque permite segmentar
+                mejor, contactar con perfiles concretos y combinar acciones
+                orgánicas con LinkedIn Ads para dirigir tráfico a la landing.
+              </p>
+            ),
+          },
+          {
+            id: 'qa-5',
+            label: '¿Cómo se produce la conversión de lead a cliente?',
+            detail: (
+              <p>
+                La conversión se trabaja con email de seguimiento, remarketing
+                en SEM/display y mensajes centrados en incentivos como una
+                propuesta más completa o una prueba de valor del servicio.
+              </p>
+            ),
+          },
+        ],
       },
     ],
   },
