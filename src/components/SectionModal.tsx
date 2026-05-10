@@ -47,6 +47,10 @@ function LeafItem({ leaf }: { leaf: SectionLeaf }) {
         >
           {hasHeader && <div className="mb-4">{leaf.header}</div>}
 
+          {leaf.summary && !expanded && (
+            <div className="mb-4">{leaf.summary}</div>
+          )}
+
           {hasBullets && (
             <>
               <ul className="flex flex-col gap-3">

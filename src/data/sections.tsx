@@ -12,7 +12,7 @@ import {
 function Chip({ children }: { children: ReactNode }) {
   return (
     <span
-      className="inline-block rounded-full px-3 py-1 text-[11px] md:text-xs"
+      className="inline-block rounded-full px-3 py-1 text-[11px] md:text-xs whitespace-nowrap"
       style={{ backgroundColor: '#F1F5F7', color: '#0D212C' }}
     >
       {children}
@@ -49,6 +49,7 @@ export type SectionLeaf = {
   id: string;
   label: string;
   header?: ReactNode;
+  summary?: ReactNode;
   bullets?: LeafBullet[];
   bulletsAlwaysExpanded?: boolean;
   detail?: ReactNode;
@@ -383,6 +384,17 @@ export const SECTION_CONTENT: SectionContent[] = [
                 ]}
               />
             ),
+            summary: (
+              <img
+                src={publicAsset('Javier.JPG')}
+                alt="Buyer Persona 1 — Javier Ruiz"
+                className="w-full rounded-2xl"
+                style={{
+                  boxShadow:
+                    '0 0 0 0.5px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.05)',
+                }}
+              />
+            ),
             bullets: [
               {
                 title: 'Perfil profesional',
@@ -478,6 +490,17 @@ export const SECTION_CONTENT: SectionContent[] = [
                   'Autónomo · Asesor financiero',
                   '40.000 € – 60.000 € / año',
                 ]}
+              />
+            ),
+            summary: (
+              <img
+                src={publicAsset('Carlos.JPG')}
+                alt="Buyer Persona 2 — Carlos Martín"
+                className="w-full rounded-2xl"
+                style={{
+                  boxShadow:
+                    '0 0 0 0.5px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.05)',
+                }}
               />
             ),
             bullets: [
@@ -576,6 +599,17 @@ export const SECTION_CONTENT: SectionContent[] = [
                   'Madrid',
                   'Director General · B2B (150 empleados)',
                 ]}
+              />
+            ),
+            summary: (
+              <img
+                src={publicAsset('Antonio .JPG')}
+                alt="Buyer Persona 3 — Antonio López"
+                className="w-full rounded-2xl"
+                style={{
+                  boxShadow:
+                    '0 0 0 0.5px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.05)',
+                }}
               />
             ),
             bullets: [

@@ -97,7 +97,7 @@ function Card({ item }: { item: Item }) {
       </p>
 
       <div
-        className="font-serif font-semibold text-3xl md:text-4xl mt-5 leading-none tracking-tight"
+        className="font-serif font-semibold text-3xl md:text-4xl mt-5 leading-none tracking-tight whitespace-nowrap"
         style={{ color: '#051A24' }}
       >
         {item.primary}
