@@ -1,4 +1,5 @@
 import { ReactNode, useState } from 'react';
+import { InlineLink, SeeAlso } from './InlineLink';
 
 type Item = {
   id: string;
@@ -7,6 +8,11 @@ type Item = {
   primary: string;
   secondary?: string;
   description: ReactNode;
+};
+
+const OBJETIVO_LINK = {
+  sectionId: 'plan-de-accion',
+  groupId: 'objetivos-online',
 };
 
 const ITEMS: Item[] = [
@@ -20,7 +26,8 @@ const ITEMS: Item[] = [
       <p>
         El mercado total disponible para Métrica Marketing está compuesto por
         2.975.490 PYMES en España, que representan el universo completo de
-        empresas potencialmente interesadas en mejorar su marketing.
+        empresas potencialmente interesadas en mejorar su marketing.{' '}
+        <InlineLink to={OBJETIVO_LINK}>Objetivo inicial</InlineLink>.
       </p>
     ),
   },
@@ -33,7 +40,8 @@ const ITEMS: Item[] = [
     description: (
       <div className="flex flex-col gap-2.5">
         <p>
-          Empresas que cumplen una condición clave: han demostrado intención
+          <InlineLink to={OBJETIVO_LINK}>Objetivo inicial</InlineLink>:
+          empresas que cumplen una condición clave — han demostrado intención
           real de mejorar su presencia digital.
         </p>
         <ul className="list-disc pl-5 space-y-1">
@@ -61,8 +69,9 @@ const ITEMS: Item[] = [
     description: (
       <div className="flex flex-col gap-2.5">
         <p>
-          Enfoque conservador y estratégico para validar el modelo y construir
-          una base sólida de clientes.
+          <InlineLink to={OBJETIVO_LINK}>Objetivo inicial</InlineLink> y
+          justificación: enfoque conservador y estratégico para validar el
+          modelo y construir una base sólida de clientes.
         </p>
         <ul className="list-disc pl-5 space-y-1">
           <li>
@@ -145,10 +154,30 @@ function Card({ item }: { item: Item }) {
 
 export function TamSamSomDiagram() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
-      {ITEMS.map((it) => (
-        <Card key={it.id} item={it} />
-      ))}
+    <div className="flex flex-col gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
+        {ITEMS.map((it) => (
+          <Card key={it.id} item={it} />
+        ))}
+      </div>
+      <SeeAlso
+        links={[
+          {
+            label: 'Objetivos de Marketing Online',
+            to: {
+              sectionId: 'plan-de-accion',
+              groupId: 'objetivos-online',
+            },
+          },
+          {
+            label: 'Presupuesto',
+            to: {
+              sectionId: 'plan-de-accion',
+              groupId: 'presupuesto',
+            },
+          },
+        ]}
+      />
     </div>
   );
 }

@@ -1,3 +1,5 @@
+import { SeeAlso } from './InlineLink';
+
 type Step = {
   number: number;
   label: string;
@@ -29,7 +31,7 @@ const STEPS: Step[] = [
 
 export function CustomerJourneyDiagram() {
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col gap-4">
       <ol className="relative flex flex-col gap-4 md:gap-5">
         <span
           aria-hidden="true"
@@ -65,6 +67,17 @@ export function CustomerJourneyDiagram() {
           </li>
         ))}
       </ol>
+      <SeeAlso
+        links={[
+          {
+            label: 'Funnels (Captación · Conversión · Fidelización)',
+            to: {
+              sectionId: 'plan-de-accion',
+              groupId: 'estrategia-digital',
+            },
+          },
+        ]}
+      />
     </div>
   );
 }

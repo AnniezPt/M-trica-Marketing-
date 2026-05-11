@@ -8,6 +8,7 @@ import { NavDrawer } from './components/NavDrawer';
 import { TopBreadcrumbs } from './components/TopBreadcrumbs';
 import { SectionModal } from './components/SectionModal';
 import { BookingModal } from './components/BookingModal';
+import { NavigationProvider } from './lib/navigation';
 import { useInViewAnimation } from './hooks/useInViewAnimation';
 
 const MARQUEE_PLACEHOLDERS = Array.from({ length: 8 }, (_, i) => i);
@@ -115,43 +116,49 @@ export default function App() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [openSectionId, setOpenSectionId] = useState<string | null>(null);
   const [openGroupId, setOpenGroupId] = useState<string | null>(null);
+  const [openLeafId, setOpenLeafId] = useState<string | null>(null);
   const [bookingOpen, setBookingOpen] = useState(false);
 
-  const openSection = (id: string, groupId?: string) => {
+  const openSection = (id: string, groupId?: string, leafId?: string) => {
     setOpenSectionId(id);
     setOpenGroupId(groupId ?? null);
+    setOpenLeafId(leafId ?? null);
   };
   const closeSection = () => {
     setOpenSectionId(null);
     setOpenGroupId(null);
+    setOpenLeafId(null);
   };
   const openBooking = () => setBookingOpen(true);
 
   return (
-    <div className="bg-white min-h-screen overflow-x-hidden">
-      <TopBreadcrumbs onSelect={openSection} />
-      <Hero />
-      <Marquee />
-      <TestimonialCarousel />
-      <PartnerSection onStart={openBooking} />
-      <Footer onOpenSection={openSection} />
-      <CopyrightBar />
-      <BottomNav
-        onOpenMenu={() => setDrawerOpen(true)}
-        onStart={openBooking}
-      />
-      <NavDrawer
-        open={drawerOpen}
-        onClose={() => setDrawerOpen(false)}
-        onSelectSection={openSection}
-      />
-      <SectionModal
-        openId={openSectionId}
-        initialGroupId={openGroupId}
-        onClose={closeSection}
-        onNavigate={openSection}
-      />
-      <BookingModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
-    </div>
+    <NavigationProvider value={openSection}>
+      <div className="bg-white min-h-screen overflow-x-hidden">
+        <TopBreadcrumbs onSelect={openSection} />
+        <Hero />
+        <Marquee />
+        <TestimonialCarousel />
+        <PartnerSection onStart={openBooking} />
+        <Footer onOpenSection={openSection} />
+        <CopyrightBar />
+        <BottomNav
+          onOpenMenu={() => setDrawerOpen(true)}
+          onStart={openBooking}
+        />
+        <NavDrawer
+          open={drawerOpen}
+          onClose={() => setDrawerOpen(false)}
+          onSelectSection={openSection}
+        />
+        <SectionModal
+          openId={openSectionId}
+          initialGroupId={openGroupId}
+          initialLeafId={openLeafId}
+          onClose={closeSection}
+          onNavigate={openSection}
+        />
+        <BookingModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
+      </div>
+    </NavigationProvider>
   );
 }

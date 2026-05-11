@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { CustomerJourneyDiagram } from '../components/CustomerJourneyDiagram';
 import { TamSamSomDiagram } from '../components/TamSamSomDiagram';
 import { ChannelEmbudo } from '../components/ChannelEmbudo';
+import { InlineLink, SeeAlso } from '../components/InlineLink';
 import { publicAsset } from '../lib/publicAsset';
 import {
   CAPTACION_CHANNELS,
@@ -45,6 +46,8 @@ export type LeafBullet = {
   body?: ReactNode;
 };
 
+import type { LinkTarget } from '../components/InlineLink';
+
 export type SectionLeaf = {
   id: string;
   label: string;
@@ -53,6 +56,7 @@ export type SectionLeaf = {
   bullets?: LeafBullet[];
   bulletsAlwaysExpanded?: boolean;
   detail?: ReactNode;
+  seeAlso?: Array<{ label: string; to: LinkTarget }>;
   qaAnchor?: string;
 };
 
@@ -92,7 +96,22 @@ export const SECTION_CONTENT: SectionContent[] = [
               },
               {
                 title: 'Contexto social',
-                body: 'Predominio de pymes y autónomos que demandan soluciones ágiles y accesibles. Cambio en el consumo B2B: digitalización, autoservicio e inmediatez.',
+                body: (
+                  <>
+                    Predominio de pymes y autónomos que demandan{' '}
+                    <InlineLink
+                      to={{
+                        sectionId: 'estudio-del-mercado',
+                        groupId: 'analisis-interno',
+                        leafId: 'ventaja-competitiva',
+                      }}
+                    >
+                      soluciones ágiles y accesibles
+                    </InlineLink>
+                    . Cambio en el consumo B2B: digitalización, autoservicio e
+                    inmediatez.
+                  </>
+                ),
               },
               {
                 title: 'Contexto económico',
@@ -111,6 +130,15 @@ export const SECTION_CONTENT: SectionContent[] = [
                 body: 'Fuerte regulación en protección de datos (RGPD). Nueva normativa de IA (AI Act) exige transparencia y control.',
               },
             ],
+            seeAlso: [
+              {
+                label: 'Misión y Visión',
+                to: {
+                  sectionId: 'estrategia-de-marketing',
+                  groupId: 'mision-vision',
+                },
+              },
+            ],
           },
           {
             id: 'porter',
@@ -118,7 +146,21 @@ export const SECTION_CONTENT: SectionContent[] = [
             bullets: [
               {
                 title: 'Barreras de entrada',
-                body: 'Medias-altas, debido a la complejidad técnica (sistemas multiagente) y requisitos legales.',
+                body: (
+                  <>
+                    Medias-altas, debido a la{' '}
+                    <InlineLink
+                      to={{
+                        sectionId: 'estudio-del-mercado',
+                        groupId: 'analisis-interno',
+                        leafId: 'ventaja-competitiva',
+                      }}
+                    >
+                      complejidad técnica (sistemas multiagente)
+                    </InlineLink>{' '}
+                    y requisitos legales.
+                  </>
+                ),
               },
               {
                 title: 'Nuevos competidores',
@@ -135,6 +177,16 @@ export const SECTION_CONTENT: SectionContent[] = [
               {
                 title: 'Clientes',
                 body: 'Poder medio-alto por sensibilidad al precio y facilidad de cambio.',
+              },
+            ],
+            seeAlso: [
+              {
+                label: 'Ventaja competitiva',
+                to: {
+                  sectionId: 'estudio-del-mercado',
+                  groupId: 'analisis-interno',
+                  leafId: 'ventaja-competitiva',
+                },
               },
             ],
           },
@@ -478,6 +530,15 @@ export const SECTION_CONTENT: SectionContent[] = [
                 ),
               },
             ],
+            seeAlso: [
+              {
+                label: 'Campañas en LinkedIn y Redes Sociales',
+                to: {
+                  sectionId: 'plan-de-accion',
+                  groupId: 'estrategia-digital',
+                },
+              },
+            ],
           },
           {
             id: 'bp-2',
@@ -586,6 +647,15 @@ export const SECTION_CONTENT: SectionContent[] = [
                     estrategia clara y accionable."
                   </p>
                 ),
+              },
+            ],
+            seeAlso: [
+              {
+                label: 'Campañas en LinkedIn y Redes Sociales',
+                to: {
+                  sectionId: 'plan-de-accion',
+                  groupId: 'estrategia-digital',
+                },
               },
             ],
           },
@@ -697,6 +767,15 @@ export const SECTION_CONTENT: SectionContent[] = [
                 ),
               },
             ],
+            seeAlso: [
+              {
+                label: 'Campañas en LinkedIn y Redes Sociales',
+                to: {
+                  sectionId: 'plan-de-accion',
+                  groupId: 'estrategia-digital',
+                },
+              },
+            ],
           },
         ],
       },
@@ -760,15 +839,27 @@ export const SECTION_CONTENT: SectionContent[] = [
             id: 'obj',
             label: 'Objetivos Año 1',
             detail: (
-              <BulletList
-                items={[
-                  'Llegar a 300.000 € de ingresos en el año 1.',
-                  'Captar 3.375 leads.',
-                  'Convertir el 40% de los leads el año 1.',
-                  'Posicionarnos como referente en marketing con IA.',
-                  'Establecer alianzas estratégicas con agencias digitales o consultoras.',
-                ]}
-              />
+              <ul className="list-disc pl-5 space-y-1">
+                <li>
+                  Llegar a 300.000 € de{' '}
+                  <InlineLink
+                    to={{
+                      sectionId: 'plan-financiero',
+                      groupId: 'pf-ingresos',
+                    }}
+                  >
+                    ingresos
+                  </InlineLink>{' '}
+                  en el año 1.
+                </li>
+                <li>Captar 3.375 leads.</li>
+                <li>Convertir el 40% de los leads el año 1.</li>
+                <li>Posicionarnos como referente en marketing con IA.</li>
+                <li>
+                  Establecer alianzas estratégicas con agencias digitales o
+                  consultoras.
+                </li>
+              </ul>
             ),
           },
         ],
@@ -803,40 +894,166 @@ export const SECTION_CONTENT: SectionContent[] = [
               {
                 title: 'Captación · 45.000 €',
                 body: (
-                  <BulletList
-                    items={[
-                      'LinkedIn: 18.000 €',
-                      'SEM: 11.250 €',
-                      'Email Marketing: 6.750 €',
-                      'Redes Sociales: 4.500 €',
-                      'Marketing de Afiliación: 4.500 €',
-                    ]}
-                  />
+                  <ul className="list-disc pl-5 space-y-1">
+                    <li>
+                      <InlineLink
+                        to={{
+                          sectionId: 'plan-de-accion',
+                          groupId: 'estrategia-digital',
+                          leafId: 'captacion',
+                        }}
+                      >
+                        LinkedIn
+                      </InlineLink>
+                      : 18.000 €
+                    </li>
+                    <li>
+                      <InlineLink
+                        to={{
+                          sectionId: 'plan-de-accion',
+                          groupId: 'estrategia-digital',
+                          leafId: 'captacion',
+                        }}
+                      >
+                        SEM
+                      </InlineLink>
+                      : 11.250 €
+                    </li>
+                    <li>
+                      <InlineLink
+                        to={{
+                          sectionId: 'plan-de-accion',
+                          groupId: 'estrategia-digital',
+                          leafId: 'captacion',
+                        }}
+                      >
+                        Email Marketing
+                      </InlineLink>
+                      : 6.750 €
+                    </li>
+                    <li>
+                      <InlineLink
+                        to={{
+                          sectionId: 'plan-de-accion',
+                          groupId: 'estrategia-digital',
+                          leafId: 'captacion',
+                        }}
+                      >
+                        Redes Sociales
+                      </InlineLink>
+                      : 4.500 €
+                    </li>
+                    <li>
+                      <InlineLink
+                        to={{
+                          sectionId: 'plan-de-accion',
+                          groupId: 'estrategia-digital',
+                          leafId: 'captacion',
+                        }}
+                      >
+                        Marketing de Afiliación
+                      </InlineLink>
+                      : 4.500 €
+                    </li>
+                  </ul>
                 ),
               },
               {
                 title: 'Conversión · 40.000 €',
                 body: (
-                  <BulletList
-                    items={[
-                      'LinkedIn: 16.000 €',
-                      'SEM: 10.000 €',
-                      'Email Marketing: 6.000 €',
-                      'Redes Sociales: 4.000 €',
-                      'Marketing de Afiliación: 4.000 €',
-                    ]}
-                  />
+                  <ul className="list-disc pl-5 space-y-1">
+                    <li>
+                      <InlineLink
+                        to={{
+                          sectionId: 'plan-de-accion',
+                          groupId: 'estrategia-digital',
+                          leafId: 'conversion',
+                        }}
+                      >
+                        LinkedIn
+                      </InlineLink>
+                      : 16.000 €
+                    </li>
+                    <li>
+                      <InlineLink
+                        to={{
+                          sectionId: 'plan-de-accion',
+                          groupId: 'estrategia-digital',
+                          leafId: 'conversion',
+                        }}
+                      >
+                        SEM
+                      </InlineLink>
+                      : 10.000 €
+                    </li>
+                    <li>
+                      <InlineLink
+                        to={{
+                          sectionId: 'plan-de-accion',
+                          groupId: 'estrategia-digital',
+                          leafId: 'conversion',
+                        }}
+                      >
+                        Email Marketing
+                      </InlineLink>
+                      : 6.000 €
+                    </li>
+                    <li>
+                      <InlineLink
+                        to={{
+                          sectionId: 'plan-de-accion',
+                          groupId: 'estrategia-digital',
+                          leafId: 'conversion',
+                        }}
+                      >
+                        Redes Sociales
+                      </InlineLink>
+                      : 4.000 €
+                    </li>
+                    <li>
+                      <InlineLink
+                        to={{
+                          sectionId: 'plan-de-accion',
+                          groupId: 'estrategia-digital',
+                          leafId: 'conversion',
+                        }}
+                      >
+                        Marketing de Afiliación
+                      </InlineLink>
+                      : 4.000 €
+                    </li>
+                  </ul>
                 ),
               },
               {
                 title: 'Fidelización · 15.000 €',
                 body: (
-                  <BulletList
-                    items={[
-                      'Email Marketing: 7.500 €',
-                      'Redes Sociales: 7.500 €',
-                    ]}
-                  />
+                  <ul className="list-disc pl-5 space-y-1">
+                    <li>
+                      <InlineLink
+                        to={{
+                          sectionId: 'plan-de-accion',
+                          groupId: 'estrategia-digital',
+                          leafId: 'fidelizacion',
+                        }}
+                      >
+                        Email Marketing
+                      </InlineLink>
+                      : 7.500 €
+                    </li>
+                    <li>
+                      <InlineLink
+                        to={{
+                          sectionId: 'plan-de-accion',
+                          groupId: 'estrategia-digital',
+                          leafId: 'fidelizacion',
+                        }}
+                      >
+                        Redes Sociales
+                      </InlineLink>
+                      : 7.500 €
+                    </li>
+                  </ul>
                 ),
               },
             ],

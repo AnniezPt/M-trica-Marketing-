@@ -1,16 +1,24 @@
 import { useEffect, useState } from 'react';
 import { ChevronDown, ChevronLeft, ChevronRight, HelpCircle, Plus, X } from 'lucide-react';
 import { SECTION_CONTENT, SectionGroup, SectionLeaf } from '../data/sections';
+import { SeeAlso } from './InlineLink';
 
 type Props = {
   openId: string | null;
   initialGroupId?: string | null;
+  initialLeafId?: string | null;
   onClose: () => void;
-  onNavigate: (id: string, groupId?: string) => void;
+  onNavigate: (id: string, groupId?: string, leafId?: string) => void;
 };
 
-function LeafItem({ leaf }: { leaf: SectionLeaf }) {
-  const [open, setOpen] = useState(false);
+function LeafItem({
+  leaf,
+  defaultOpen = false,
+}: {
+  leaf: SectionLeaf;
+  defaultOpen?: boolean;
+}) {
+  const [open, setOpen] = useState(defaultOpen);
   const [expanded, setExpanded] = useState(leaf.bulletsAlwaysExpanded ?? false);
   const hasBullets = !!leaf.bullets && leaf.bullets.length > 0;
   const hasDetail = leaf.detail !== undefined;
@@ -121,6 +129,10 @@ function LeafItem({ leaf }: { leaf: SectionLeaf }) {
               Ver pregunta frecuente
             </a>
           )}
+
+          {leaf.seeAlso && leaf.seeAlso.length > 0 && (
+            <SeeAlso links={leaf.seeAlso} />
+          )}
         </div>
       )}
     </div>
@@ -130,9 +142,11 @@ function LeafItem({ leaf }: { leaf: SectionLeaf }) {
 function GroupItem({
   group,
   defaultOpen = false,
+  initialLeafId,
 }: {
   group: SectionGroup;
   defaultOpen?: boolean;
+  initialLeafId?: string | null;
 }) {
   const [open, setOpen] = useState(defaultOpen);
   const hasChildren = group.children.length > 0;
@@ -160,7 +174,11 @@ function GroupItem({
         <div className="mt-3 flex flex-col gap-2">
           {hasChildren ? (
             group.children.map((leaf) => (
-              <LeafItem key={leaf.id} leaf={leaf} />
+              <LeafItem
+                key={`${leaf.id}-${initialLeafId ?? ''}`}
+                leaf={leaf}
+                defaultOpen={leaf.id === initialLeafId}
+              />
             ))
           ) : (
             <p
@@ -176,7 +194,13 @@ function GroupItem({
   );
 }
 
-export function SectionModal({ openId, initialGroupId, onClose, onNavigate }: Props) {
+export function SectionModal({
+  openId,
+  initialGroupId,
+  initialLeafId,
+  onClose,
+  onNavigate,
+}: Props) {
   const idx = openId ? SECTION_CONTENT.findIndex((s) => s.id === openId) : -1;
   const section = idx >= 0 ? SECTION_CONTENT[idx] : null;
   const prev = idx > 0 ? SECTION_CONTENT[idx - 1] : null;
@@ -341,9 +365,10 @@ export function SectionModal({ openId, initialGroupId, onClose, onNavigate }: Pr
             <section className="max-w-[820px] mx-auto px-6 pb-16 flex flex-col gap-3">
               {section.groups.map((g) => (
                 <GroupItem
-                  key={`${g.id}-${initialGroupId ?? ''}`}
+                  key={`${g.id}-${initialGroupId ?? ''}-${initialLeafId ?? ''}`}
                   group={g}
                   defaultOpen={g.id === initialGroupId}
+                  initialLeafId={initialLeafId}
                 />
               ))}
             </section>
