@@ -13,6 +13,7 @@ const SECTION_IDS = new Set([
   'estrategia-de-marketing',
   'plan-de-accion',
   'plan-financiero',
+  'calculadora',
   'quienes-somos',
   'qa',
 ]);

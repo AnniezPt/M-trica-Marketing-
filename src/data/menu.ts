@@ -172,6 +172,7 @@ export const NAV_SECTIONS: NavSection[] = [
 ];
 
 export const EXTRA_LINKS = [
-  { id: 'quienes-somos', label: 'Quiénes somos', number: '07' },
-  { id: 'qa', label: 'Q&A', number: '08' },
+  { id: 'calculadora', label: 'Calculadora', number: '07' },
+  { id: 'quienes-somos', label: 'Quiénes somos', number: '08' },
+  { id: 'qa', label: 'Q&A', number: '09' },
 ];

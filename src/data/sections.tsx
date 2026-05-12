@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { CustomerJourneyDiagram } from '../components/CustomerJourneyDiagram';
 import { TamSamSomDiagram } from '../components/TamSamSomDiagram';
 import { ChannelEmbudo } from '../components/ChannelEmbudo';
+import { FunnelCalculator } from '../components/FunnelCalculator';
 import { InlineLink, SeeAlso } from '../components/InlineLink';
 import { publicAsset } from '../lib/publicAsset';
 import {
@@ -1442,8 +1443,28 @@ export const SECTION_CONTENT: SectionContent[] = [
     ],
   },
   {
-    id: 'quienes-somos',
+    id: 'calculadora',
     number: '07',
+    title: 'Calculadora',
+    intro:
+      'Simulador interactivo del funnel. Cambia cualquier dato y los resultados se recalculan al instante.',
+    groups: [
+      {
+        id: 'calc-funnel',
+        label: 'Funnel calculator',
+        children: [
+          {
+            id: 'calc-tool',
+            label: 'Simulador interactivo',
+            detail: <FunnelCalculator />,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'quienes-somos',
+    number: '08',
     title: 'Quiénes somos',
     intro:
       'Las cuatro fundadoras de Métrica Marketing, alumnas del Máster en Marketing Digital y e-commerce de la EAE Business School.',
@@ -1506,7 +1527,7 @@ export const SECTION_CONTENT: SectionContent[] = [
   },
   {
     id: 'qa',
-    number: '08',
+    number: '09',
     title: 'Q&A',
     intro:
       'Preguntas frecuentes recopiladas a lo largo de las cuatro entregas del TFM.',
