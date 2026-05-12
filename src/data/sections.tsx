@@ -78,7 +78,7 @@ export type SectionContent = {
 export const SECTION_CONTENT: SectionContent[] = [
   {
     id: 'estudio-del-mercado',
-    number: '03',
+    number: '01',
     title: 'Estudio del Mercado',
     intro:
       'Diagnóstico completo del entorno y la posición competitiva de Métrica Marketing.',
@@ -389,7 +389,7 @@ export const SECTION_CONTENT: SectionContent[] = [
   },
   {
     id: 'estrategia-de-marketing',
-    number: '04',
+    number: '02',
     title: 'Estrategia de Marketing',
     intro:
       'Misión, visión, buyer persona, segmentación TAM-SAM-SOM, customer journey y Business Canvas.',
@@ -827,7 +827,7 @@ export const SECTION_CONTENT: SectionContent[] = [
   },
   {
     id: 'plan-de-accion',
-    number: '05',
+    number: '03',
     title: 'Plan de Acción',
     intro:
       'Objetivos online, presupuesto y estrategia digital en captación, conversión y fidelización.',
@@ -1188,7 +1188,7 @@ export const SECTION_CONTENT: SectionContent[] = [
   },
   {
     id: 'plan-financiero',
-    number: '06',
+    number: '04',
     title: 'Plan Financiero',
     intro:
       'Visión económica completa: cuadro de mando, ingresos, costes, ROI/ROAS, punto de equilibrio y ratios.',
@@ -1444,7 +1444,7 @@ export const SECTION_CONTENT: SectionContent[] = [
   },
   {
     id: 'calculadora',
-    number: '07',
+    number: '05',
     title: 'Calculadora',
     intro:
       'Simulador interactivo del funnel. Cambia cualquier dato y los resultados se recalculan al instante.',
@@ -1464,7 +1464,7 @@ export const SECTION_CONTENT: SectionContent[] = [
   },
   {
     id: 'quienes-somos',
-    number: '08',
+    number: '06',
     title: 'Quiénes somos',
     intro:
       'Las cuatro fundadoras de Métrica Marketing, alumnas del Máster en Marketing Digital y e-commerce de la EAE Business School.',
@@ -1527,7 +1527,7 @@ export const SECTION_CONTENT: SectionContent[] = [
   },
   {
     id: 'qa',
-    number: '09',
+    number: '07',
     title: 'Q&A',
     intro:
       'Preguntas frecuentes recopiladas a lo largo de las cuatro entregas del TFM.',

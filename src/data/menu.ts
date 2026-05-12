@@ -20,7 +20,7 @@ export type NavSection = {
 export const NAV_SECTIONS: NavSection[] = [
   {
     id: 'estudio-del-mercado',
-    number: '03',
+    number: '01',
     title: 'Estudio del Mercado',
     groups: [
       {
@@ -45,7 +45,7 @@ export const NAV_SECTIONS: NavSection[] = [
   },
   {
     id: 'estrategia-de-marketing',
-    number: '04',
+    number: '02',
     title: 'Estrategia de Marketing',
     groups: [
       {
@@ -92,7 +92,7 @@ export const NAV_SECTIONS: NavSection[] = [
   },
   {
     id: 'plan-de-accion',
-    number: '05',
+    number: '03',
     title: 'Plan de Acción',
     groups: [
       {
@@ -122,7 +122,7 @@ export const NAV_SECTIONS: NavSection[] = [
   },
   {
     id: 'plan-financiero',
-    number: '06',
+    number: '04',
     title: 'Plan Financiero',
     groups: [
       {
@@ -172,7 +172,7 @@ export const NAV_SECTIONS: NavSection[] = [
 ];
 
 export const EXTRA_LINKS = [
-  { id: 'calculadora', label: 'Calculadora', number: '07' },
-  { id: 'quienes-somos', label: 'Quiénes somos', number: '08' },
-  { id: 'qa', label: 'Q&A', number: '09' },
+  { id: 'calculadora', label: 'Calculadora', number: '05' },
+  { id: 'quienes-somos', label: 'Quiénes somos', number: '06' },
+  { id: 'qa', label: 'Q&A', number: '07' },
 ];
