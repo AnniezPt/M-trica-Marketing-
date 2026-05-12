@@ -9,9 +9,14 @@ import { TopBreadcrumbs } from './components/TopBreadcrumbs';
 import { SectionModal } from './components/SectionModal';
 import { BookingModal } from './components/BookingModal';
 import { NavigationProvider } from './lib/navigation';
+import { publicAsset } from './lib/publicAsset';
 import { useInViewAnimation } from './hooks/useInViewAnimation';
 
-const MARQUEE_PLACEHOLDERS = Array.from({ length: 8 }, (_, i) => i);
+const MARQUEE_IMAGES = ['IMG_1044.jpeg', 'IMG_1046.jpeg', 'IMG_1048.png'];
+const MARQUEE_SLOTS = Array.from(
+  { length: 8 },
+  (_, i) => MARQUEE_IMAGES[i % MARQUEE_IMAGES.length],
+);
 
 function Hero() {
   const { ref, inView } = useInViewAnimation<HTMLElement>(0.1);
@@ -79,33 +84,22 @@ function Hero() {
 }
 
 function Marquee() {
-  const items = [...MARQUEE_PLACEHOLDERS, ...MARQUEE_PLACEHOLDERS];
+  const items = [...MARQUEE_SLOTS, ...MARQUEE_SLOTS];
   return (
     <div className="w-full mt-12 md:mt-16 mb-16 overflow-hidden">
       <div className="flex animate-marquee w-max">
-        {items.map((_, i) => (
-          <div
-            key={i}
+        {items.map((src, i) => (
+          <img
+            key={`${src}-${i}`}
+            src={publicAsset(src)}
+            alt=""
             aria-hidden="true"
-            className="h-[220px] md:h-[400px] w-[280px] md:w-[520px] mx-3 rounded-2xl shadow-lg flex-shrink-0 flex items-center justify-center relative overflow-hidden"
+            loading="lazy"
+            className="h-[220px] md:h-[400px] w-[280px] md:w-[520px] mx-3 rounded-2xl shadow-lg flex-shrink-0 object-cover"
             style={{
-              background:
-                'linear-gradient(135deg, #F1F5F7 0%, #E5ECF0 50%, #F1F5F7 100%)',
               border: '1px solid rgba(13,33,44,0.06)',
             }}
-          >
-            <div
-              className="absolute inset-3 rounded-xl border-2 border-dashed flex items-center justify-center"
-              style={{ borderColor: 'rgba(13,33,44,0.1)' }}
-            >
-              <span
-                className="font-mono text-xs md:text-sm"
-                style={{ color: 'rgba(13,33,44,0.35)' }}
-              >
-                Imagen pendiente
-              </span>
-            </div>
-          </div>
+          />
         ))}
       </div>
     </div>
