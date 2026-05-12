@@ -184,33 +184,35 @@ export function NavDrawer({ open, onClose, onSelectSection }: Props) {
             );
           })}
 
-          <div
-            className="mt-2 rounded-2xl bg-[#F6F8F9] p-2 flex flex-col gap-1"
-          >
-            {EXTRA_LINKS.map((link) => (
+          {EXTRA_LINKS.map((link) => (
+            <div
+              key={link.id}
+              className="rounded-2xl"
+              style={{
+                boxShadow:
+                  '0 0 0 0.5px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04)',
+              }}
+            >
               <button
-                key={link.id}
                 type="button"
                 onClick={() => handleNavigate(link.id)}
-                className="flex items-center justify-between gap-3 px-3 py-3 rounded-xl hover:bg-white transition-colors text-left"
+                className="w-full flex flex-col items-start text-left px-5 py-4 rounded-2xl hover:bg-black/[0.03] transition-colors"
               >
-                <span className="flex items-center gap-3">
-                  <span
-                    className="font-mono text-[11px]"
-                    style={{ color: '#273C46' }}
-                  >
-                    {link.number}.
-                  </span>
-                  <span
-                    className="font-serif font-semibold text-base"
-                    style={{ color: '#051A24' }}
-                  >
-                    {link.label}
-                  </span>
+                <span
+                  className="font-mono text-[11px]"
+                  style={{ color: '#273C46' }}
+                >
+                  {link.number}.
+                </span>
+                <span
+                  className="font-serif font-semibold text-lg mt-0.5"
+                  style={{ color: '#051A24' }}
+                >
+                  {link.label}
                 </span>
               </button>
-            ))}
-          </div>
+            </div>
+          ))}
         </nav>
 
         <footer className="px-6 py-4 border-t border-black/5">

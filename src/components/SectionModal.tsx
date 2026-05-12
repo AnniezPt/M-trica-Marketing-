@@ -255,13 +255,13 @@ export function SectionModal({
 
             <nav
               aria-label="Apartados"
-              className="flex-1 min-w-0 overflow-x-auto md:overflow-visible no-scrollbar"
+              className="flex-1 min-w-0 overflow-x-auto no-scrollbar"
             >
               <ul className="flex items-center gap-1 md:gap-2 px-1">
                 {SECTION_CONTENT.map((s) => {
                   const active = s.id === openId;
                   return (
-                    <li key={s.id} className="flex-shrink-0 relative group">
+                    <li key={s.id} className="flex-shrink-0">
                       <button
                         type="button"
                         onClick={() => onNavigate(s.id)}
@@ -275,39 +275,6 @@ export function SectionModal({
                           {s.title}
                         </span>
                       </button>
-
-                      {s.groups.length > 0 && (
-                        <div className="hidden md:block absolute top-full left-1/2 -translate-x-1/2 pt-3 z-40 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-150">
-                          <div
-                            className="rounded-2xl bg-white p-1.5 min-w-[240px]"
-                            style={{
-                              boxShadow:
-                                '0 0 0 0.5px rgba(0,0,0,0.08), 0 12px 32px rgba(0,0,0,0.12)',
-                            }}
-                          >
-                            <div
-                              className="px-3 py-2 font-mono text-[10px] uppercase tracking-wider"
-                              style={{ color: '#273C46' }}
-                            >
-                              {s.title}
-                            </div>
-                            <ul className="flex flex-col">
-                              {s.groups.map((g) => (
-                                <li key={g.id}>
-                                  <button
-                                    type="button"
-                                    onClick={() => onNavigate(s.id, g.id)}
-                                    className="w-full text-left px-3 py-2 rounded-xl hover:bg-black/[0.05] transition-colors text-sm"
-                                    style={{ color: '#0D212C' }}
-                                  >
-                                    {g.label}
-                                  </button>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        </div>
-                      )}
                     </li>
                   );
                 })}
