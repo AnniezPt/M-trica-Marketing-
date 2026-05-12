@@ -12,7 +12,14 @@ import { NavigationProvider } from './lib/navigation';
 import { publicAsset } from './lib/publicAsset';
 import { useInViewAnimation } from './hooks/useInViewAnimation';
 
-const MARQUEE_IMAGES = ['IMG_1044.jpeg', 'IMG_1046.jpeg', 'IMG_1048.png'];
+const MARQUEE_IMAGES = [
+  'IMG_1044.jpeg',
+  'IMG_1046.jpeg',
+  'IMG_1048.png',
+  'consultoria4.jpeg',
+  'consultoria5.jpeg',
+  'consultoria6.webp',
+];
 const MARQUEE_SLOTS = Array.from(
   { length: 8 },
   (_, i) => MARQUEE_IMAGES[i % MARQUEE_IMAGES.length],

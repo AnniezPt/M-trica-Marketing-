@@ -1508,15 +1508,209 @@ export const SECTION_CONTENT: SectionContent[] = [
     id: 'qa',
     number: '08',
     title: 'Q&A',
-    intro: 'Preguntas frecuentes sobre el plan de marketing de Métrica Marketing.',
+    intro:
+      'Preguntas frecuentes recopiladas a lo largo de las cuatro entregas del TFM.',
     groups: [
       {
-        id: 'qa-faqs',
-        label: 'Preguntas frecuentes',
+        id: 'qa-primera',
+        label: 'Primera entrega',
         children: [
           {
-            id: 'qa-1',
-            label: '¿Cuál es la oportunidad y el verdadero beneficio de este mercado?',
+            id: 'qa-1-1',
+            label: '¿Qué problema quieren resolver con Métrica Marketing?',
+            detail: (
+              <p>
+                Aborda la falta de estrategias de marketing estructuradas en
+                autónomos y PYMES españolas.
+              </p>
+            ),
+          },
+          {
+            id: 'qa-1-2',
+            label: '¿A quién va dirigido principalmente este proyecto?',
+            detail: (
+              <p>
+                A autónomos y PYMES que reconocen la necesidad de digitalizar
+                su empresa.
+              </p>
+            ),
+          },
+          {
+            id: 'qa-1-3',
+            label:
+              '¿Por qué las PYMES y autónomos necesitan una solución como esta?',
+            detail: (
+              <p>
+                Facilitar estrategias de alto nivel, haciendo que pequeños
+                negocios compitan con eficiencia y escalabilidad digital.
+              </p>
+            ),
+          },
+          {
+            id: 'qa-1-4',
+            label: '¿Qué tipo de empresas son las que más necesitan este servicio?',
+            detail: (
+              <p>
+                Empresas que no han empezado a digitalizarse o que han empezado
+                pero sin estrategia clara ni resultados.
+              </p>
+            ),
+          },
+          {
+            id: 'qa-1-5',
+            label:
+              '¿Cómo se atrae a los clientes principales dentro del Customer Journey?',
+            detail: (
+              <ul className="list-disc pl-5 space-y-1">
+                <li>
+                  <strong>Descubrimiento:</strong> inbound y outbound.
+                </li>
+                <li>
+                  <strong>Consideración:</strong> cualificación vía
+                  landing/formulario, llamada y Plan Base.
+                </li>
+                <li>
+                  <strong>Decisión:</strong> packs.
+                </li>
+                <li>
+                  <strong>Fidelización:</strong> ejecución/seguimiento para
+                  retención.
+                </li>
+              </ul>
+            ),
+          },
+        ],
+      },
+      {
+        id: 'qa-segunda',
+        label: 'Segunda entrega',
+        children: [
+          {
+            id: 'qa-2-1',
+            label: '¿Qué canal consideramos más fuerte para captar leads?',
+            detail: (
+              <p>
+                LinkedIn es uno de los canales clave porque nos permite
+                segmentar mejor, contactar con perfiles concretos y combinar
+                acciones orgánicas con LinkedIn Ads para dirigir tráfico a la
+                landing.
+              </p>
+            ),
+          },
+          {
+            id: 'qa-2-2',
+            label: '¿Cómo se produce la conversión de lead a cliente?',
+            detail: (
+              <p>
+                La conversión se trabaja con email de seguimiento, remarketing
+                en SEM/display y mensajes centrados en incentivos, como una
+                propuesta más completa o una prueba de valor del servicio.
+              </p>
+            ),
+          },
+          {
+            id: 'qa-2-3',
+            label: '¿Cómo trabajamos la fidelización de clientes?',
+            detail: (
+              <p>
+                La fidelización se centra en newsletter, contenido de valor,
+                cross-selling y promoción del módulo de formación, con el
+                objetivo de aumentar recurrencia y que una parte importante de
+                los clientes contrate módulos adicionales.
+              </p>
+            ),
+          },
+          {
+            id: 'qa-2-4',
+            label:
+              '¿Qué métricas clave se utilizan en los embudos de conversión?',
+            detail: (
+              <p>
+                Se analizan métricas como impresiones, CTR, leads generados,
+                tasa de conversión y número de clientes en cada canal (LinkedIn,
+                SEM/SEO, email marketing…).
+              </p>
+            ),
+          },
+          {
+            id: 'qa-2-5',
+            label:
+              '¿Qué objetivo general se quiere alcanzar durante el primer año?',
+            detail: (
+              <p>
+                El objetivo principal es llegar a 300.000 € de ingresos, captar
+                3.375 leads y convertir al menos un 40% de esos leads en
+                clientes.
+              </p>
+            ),
+          },
+        ],
+      },
+      {
+        id: 'qa-tercera',
+        label: 'Tercera entrega',
+        children: [
+          {
+            id: 'qa-3-1',
+            label: '¿Qué canal es más rentable?',
+            detail: (
+              <p>
+                Los más rentables en términos de eficiencia son SEO/SEM y
+                afiliación, ya que tienen menor coste de adquisición. En
+                cambio, LinkedIn es importante de cara al volumen y la calidad
+                de los clientes.
+              </p>
+            ),
+          },
+          {
+            id: 'qa-3-2',
+            label: '¿Cuáles son las variables clave?',
+            detail: <p>Tasa de conversión, CPA y ticket medio.</p>,
+          },
+          {
+            id: 'qa-3-3',
+            label: '¿El ROI es realista?',
+            detail: (
+              <p>
+                Sí, porque está basado en estimaciones de mercado como CPC, CTR
+                y tasas de conversión estándar. Además, se ha comprobado con un
+                embudo completo que conecta inversión, leads y ventas.
+              </p>
+            ),
+          },
+          {
+            id: 'qa-3-4',
+            label: '¿Cómo se conseguiría reducir el CPA?',
+            detail: (
+              <p>
+                Mejorando la tasa de conversión mediante CRO, segmentación más
+                precisa y remarketing.
+              </p>
+            ),
+          },
+          {
+            id: 'qa-3-5',
+            label: '¿Por qué el mix de canales?',
+            detail: (
+              <p>
+                Porque combina canales de alta intención como SEO y SEM con
+                canales de impacto y generación de demanda como redes sociales y
+                LinkedIn. Además, incorpora email marketing y marketing de
+                afiliación para mejorar la conversión y reducir el coste de
+                adquisición.
+              </p>
+            ),
+          },
+        ],
+      },
+      {
+        id: 'qa-ultima',
+        label: 'Última entrega',
+        children: [
+          {
+            id: 'qa-4-1',
+            label:
+              '¿Cuál es la oportunidad y el verdadero beneficio de este mercado?',
             detail: (
               <p>
                 Digitalizarse pese a la falta de tiempo, presupuesto y
@@ -1527,7 +1721,7 @@ export const SECTION_CONTENT: SectionContent[] = [
             ),
           },
           {
-            id: 'qa-2',
+            id: 'qa-4-2',
             label: '¿Qué problema quieren resolver con Métrica Marketing?',
             detail: (
               <p>
@@ -1538,7 +1732,7 @@ export const SECTION_CONTENT: SectionContent[] = [
             ),
           },
           {
-            id: 'qa-3',
+            id: 'qa-4-3',
             label: '¿A quién va dirigido principalmente este proyecto?',
             detail: (
               <p>
@@ -1549,7 +1743,7 @@ export const SECTION_CONTENT: SectionContent[] = [
             ),
           },
           {
-            id: 'qa-4',
+            id: 'qa-4-4',
             label: '¿Qué canal se considera más fuerte para captar leads?',
             detail: (
               <p>
@@ -1560,7 +1754,7 @@ export const SECTION_CONTENT: SectionContent[] = [
             ),
           },
           {
-            id: 'qa-5',
+            id: 'qa-4-5',
             label: '¿Cómo se produce la conversión de lead a cliente?',
             detail: (
               <p>
