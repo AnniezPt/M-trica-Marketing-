@@ -134,7 +134,7 @@ export default function App() {
 
   return (
     <NavigationProvider value={openSection}>
-      <div className="bg-white min-h-screen overflow-x-hidden">
+      <div className="bg-white min-h-screen overflow-x-clip">
         <TopBreadcrumbs onSelect={openSection} />
         <Hero />
         <Marquee />

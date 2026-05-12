@@ -242,7 +242,7 @@ export function SectionModal({
         <header
           className="sticky top-0 z-10 bg-white/85 backdrop-blur-md border-b border-black/5"
         >
-          <div className="max-w-[1280px] mx-auto px-4 md:px-6 py-3 flex items-center gap-3">
+          <div className="max-w-[1280px] mx-auto px-4 md:px-6 py-3 flex items-center gap-3 md:gap-6">
             <button
               type="button"
               onClick={onClose}
