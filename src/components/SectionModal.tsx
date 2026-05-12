@@ -265,13 +265,13 @@ export function SectionModal({
                       <button
                         type="button"
                         onClick={() => onNavigate(s.id)}
-                        className="rounded-full px-3 md:px-4 py-2 transition-colors"
+                        className="rounded-full px-2.5 md:px-3 py-1.5 transition-colors"
                         style={{
                           backgroundColor: active ? '#0D212C' : 'transparent',
                           color: active ? '#F6FCFF' : '#0D212C',
                         }}
                       >
-                        <span className="text-sm md:text-[15px] font-medium whitespace-nowrap">
+                        <span className="text-[13px] md:text-sm font-medium whitespace-nowrap">
                           {s.title}
                         </span>
                       </button>
