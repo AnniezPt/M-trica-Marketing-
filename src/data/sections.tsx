@@ -42,6 +42,56 @@ function BuyerHeader({ chips }: { chips: string[] }) {
   );
 }
 
+function PromptDetail({
+  contexto,
+  prompt,
+  resultado,
+}: {
+  contexto: ReactNode;
+  prompt: ReactNode;
+  resultado: ReactNode;
+}) {
+  return (
+    <div className="flex flex-col gap-4">
+      <div>
+        <h5
+          className="font-mono text-[10px] uppercase tracking-wider mb-1.5"
+          style={{ color: '#273C46' }}
+        >
+          Contexto
+        </h5>
+        <div className="text-sm md:text-base leading-relaxed">{contexto}</div>
+      </div>
+      <div>
+        <h5
+          className="font-mono text-[10px] uppercase tracking-wider mb-1.5"
+          style={{ color: '#273C46' }}
+        >
+          Prompt
+        </h5>
+        <blockquote
+          className="border-l-2 pl-4 py-1 text-sm md:text-base leading-relaxed italic"
+          style={{
+            borderColor: '#0D212C',
+            color: 'rgba(5,26,36,0.85)',
+          }}
+        >
+          {prompt}
+        </blockquote>
+      </div>
+      <div>
+        <h5
+          className="font-mono text-[10px] uppercase tracking-wider mb-1.5"
+          style={{ color: '#273C46' }}
+        >
+          Resultado
+        </h5>
+        <div className="text-sm md:text-base leading-relaxed">{resultado}</div>
+      </div>
+    </div>
+  );
+}
+
 export type LeafBullet = {
   title: string;
   body?: ReactNode;
@@ -1790,7 +1840,101 @@ export const SECTION_CONTENT: SectionContent[] = [
       {
         id: 'qa-prompt',
         label: 'Prompt',
-        children: [],
+        children: [
+          {
+            id: 'qa-prompt-1',
+            label: 'Construcción del esqueleto de la web',
+            detail: (
+              <PromptDetail
+                contexto={
+                  <p>
+                    Punto de partida del proyecto. Necesitábamos una landing
+                    web con un estilo concreto (referencia visual) que
+                    reflejara la arquitectura del TFM Métrica Marketing
+                    —estudio del mercado, estrategia, plan de acción, plan
+                    financiero, equipo y Q&amp;A— y que fuera 100% funcional
+                    desde el primer momento.
+                  </p>
+                }
+                prompt={
+                  <p>
+                    Quiero crear una página web para nuestro TFM{' '}
+                    <strong>Métrica Marketing</strong> con el estilo de esta
+                    plantilla (Viktor Oddy). El menú se dividirá en niveles
+                    siguiendo el esquema en foto: Estudio del Mercado →
+                    Análisis Externo (PESTEL, PORTER) e Interno (Cadena de
+                    valor, Ventaja competitiva, Ciclo de vida, DAFO–CAME);
+                    Estrategia de Marketing (Misión y Visión, Buyer persona,
+                    TAM·SAM·SOM, Customer Journey, Business Canvas); Plan de
+                    Acción (Objetivos, Presupuesto, Captación, Conversión,
+                    Fidelización); Plan Financiero; Quiénes somos; Q&amp;A.
+                    Sustituye todo el contenido de la plantilla por el
+                    nuestro, pero conserva los espacios, recuadros y estilo
+                    para que quede estéticamente perfecto. Lo importante es
+                    que sea <strong>100×100 funcional</strong>.
+                  </p>
+                }
+                resultado={
+                  <p>
+                    Arquitectura completa de la web montada en horas: layout
+                    responsive, navegación jerárquica con migas de pan, modal
+                    a pantalla completa para cada apartado, cards con
+                    tipografía serif, fondo blanco, fuentes personalizadas y
+                    todas las secciones pre-estructuradas listas para llenar
+                    con el contenido real del TFM.
+                  </p>
+                }
+              />
+            ),
+          },
+          {
+            id: 'qa-prompt-2',
+            label: 'Calculadora de funnel interactiva',
+            detail: (
+              <PromptDetail
+                contexto={
+                  <p>
+                    Para añadir valor diferencial al TFM y demostrar que el
+                    plan no es solo teoría, queríamos una herramienta
+                    interactiva donde el usuario pudiera simular su propio
+                    funnel: meter sus cifras y ver al instante impresiones,
+                    leads, conversiones, ingresos y ROI.
+                  </p>
+                }
+                prompt={
+                  <p>
+                    Necesito una calculadora de funnel interactiva.{' '}
+                    <strong>Lo que introduce el usuario</strong> (puede dejar
+                    en blanco lo que no sepa): presupuesto, tipo de campaña
+                    (CPM/CPC), coste unitario, CTR, tasa de rebote, tasa de
+                    conversión y precio del producto.{' '}
+                    <strong>Lo que calcula automáticamente</strong>:
+                    impresiones → clics → visitas → leads → conversiones; e
+                    ingresos, beneficio, ROI, ROAS y coste por conversión.
+                    Quiero un apartado nuevo "Calculadora" en el menú, con la
+                    opción de elegir entre una calculadora general o tres
+                    preconfiguradas (Captación, Conversión, Fidelización)
+                    cargadas con los datos del TFM. Que sea interactivo —si
+                    cambias un dato, los resultados se recalculan al
+                    momento—, visualmente cuidado, buena experiencia de
+                    usuario, y con <strong>botón de descargar</strong> los
+                    resultados.
+                  </p>
+                }
+                resultado={
+                  <p>
+                    Componente <code>FunnelCalculator</code> con 4 presets
+                    (General + 3 fases), 8 entradas editables con validación,
+                    11 métricas calculadas en tiempo real, tarjeta oscura
+                    destacada para los resultados, botón de reset y
+                    exportación a CSV (UTF-8, separador <code>;</code>{' '}
+                    compatible con Excel).
+                  </p>
+                }
+              />
+            ),
+          },
+        ],
       },
     ],
   },
