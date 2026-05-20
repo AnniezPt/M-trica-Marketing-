@@ -88,6 +88,34 @@ function PromptDetail({
         </h5>
         <div className="text-sm md:text-base leading-relaxed">{resultado}</div>
       </div>
+      <div
+        className="mt-1 pt-3 border-t border-black/5 flex items-center gap-2"
+      >
+        <span
+          aria-hidden="true"
+          className="inline-flex items-center justify-center w-4 h-4 rounded-full"
+          style={{ backgroundColor: '#0D212C', color: '#F6FCFF' }}
+        >
+          <svg
+            width="9"
+            height="9"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+        </span>
+        <span
+          className="font-mono text-[11px]"
+          style={{ color: '#273C46' }}
+        >
+          Hecho con Claude Codex
+        </span>
+      </div>
     </div>
   );
 }
