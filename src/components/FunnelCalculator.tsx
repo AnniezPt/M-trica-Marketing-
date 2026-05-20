@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Download, RotateCcw } from 'lucide-react';
+import { Calculator, Download, RotateCcw } from 'lucide-react';
 
 type Preset = 'general' | 'captacion' | 'conversion' | 'fidelizacion';
 type CampaignType = 'CPM' | 'CPC';
@@ -247,16 +247,34 @@ function Result({
 export function FunnelCalculator() {
   const [preset, setPreset] = useState<Preset>('general');
   const [inputs, setInputs] = useState<FunnelInputs>(PRESETS.general);
+  const [appliedInputs, setAppliedInputs] = useState<FunnelInputs>(
+    PRESETS.general,
+  );
 
-  const results = useMemo(() => computeResults(inputs), [inputs]);
+  const results = useMemo(
+    () => computeResults(appliedInputs),
+    [appliedInputs],
+  );
+
+  const hasChanges = useMemo(() => {
+    return (
+      Object.keys(inputs) as Array<keyof FunnelInputs>
+    ).some((k) => inputs[k] !== appliedInputs[k]);
+  }, [inputs, appliedInputs]);
 
   const loadPreset = (p: Preset) => {
     setPreset(p);
     setInputs(PRESETS[p]);
+    setAppliedInputs(PRESETS[p]);
   };
 
   const reset = () => {
     setInputs(PRESETS[preset]);
+    setAppliedInputs(PRESETS[preset]);
+  };
+
+  const calcular = () => {
+    setAppliedInputs(inputs);
   };
 
   const update = (k: keyof FunnelInputs, v: string) => {
@@ -350,13 +368,26 @@ export function FunnelCalculator() {
         }}
       >
         <div className="flex items-center justify-between flex-wrap gap-3">
-          <h4
-            className="font-mono text-[11px] uppercase tracking-wider"
-            style={{ color: '#273C46' }}
-          >
-            Datos · entradas
-          </h4>
-          <div className="flex gap-2">
+          <div className="flex items-center gap-3 flex-wrap">
+            <h4
+              className="font-mono text-[11px] uppercase tracking-wider"
+              style={{ color: '#273C46' }}
+            >
+              Datos · entradas
+            </h4>
+            {hasChanges && (
+              <span
+                className="font-mono text-[10px] uppercase tracking-wider rounded-full px-2 py-0.5"
+                style={{
+                  backgroundColor: '#FEF3C7',
+                  color: '#92400E',
+                }}
+              >
+                Cambios sin aplicar
+              </span>
+            )}
+          </div>
+          <div className="flex gap-2 flex-wrap">
             <button
               type="button"
               onClick={reset}
@@ -371,11 +402,23 @@ export function FunnelCalculator() {
             </button>
             <button
               type="button"
-              onClick={downloadCSV}
-              className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-opacity hover:opacity-90"
+              onClick={calcular}
+              className="inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-medium transition-opacity hover:opacity-90"
               style={{
                 backgroundColor: '#0D212C',
                 color: '#F6FCFF',
+              }}
+            >
+              <Calculator className="w-3.5 h-3.5" />
+              Calcular
+            </button>
+            <button
+              type="button"
+              onClick={downloadCSV}
+              className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-colors hover:bg-black/[0.04]"
+              style={{
+                color: '#0D212C',
+                boxShadow: '0 0 0 0.5px rgba(0,0,0,0.08)',
               }}
             >
               <Download className="w-3.5 h-3.5" />
