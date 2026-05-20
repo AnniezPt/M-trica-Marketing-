@@ -1787,6 +1787,11 @@ export const SECTION_CONTENT: SectionContent[] = [
           },
         ],
       },
+      {
+        id: 'qa-prompt',
+        label: 'Prompt',
+        children: [],
+      },
     ],
   },
 ];
